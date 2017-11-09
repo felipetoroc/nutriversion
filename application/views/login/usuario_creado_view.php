@@ -1,0 +1,12 @@
+<div class="large-6 large-centered columns">
+    <div class="panel">
+        <ul class="example-orbit-content" data-orbit data-options="bullets: false;timer: false;navigation_arrows: false;next_on_click:false;pause_on_hover:false;slide_number: false">
+            <li data-orbit-slide="headline-1">
+                <div>
+                    <h1>Usuario creado exitosamente!</h1>
+                    <p>Para iniciar sesión <a href="<?=base_url()?>index.php/login">Haga clic aquí</a></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
