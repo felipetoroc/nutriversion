@@ -45,7 +45,7 @@ class Login extends CI_Controller {
 						$id = $resultado;
 						
 						$this->session->set_userdata('id',$id);
-						if($tipo == "common"){
+						if($tipo == "1"){
 
 							$this->session->set_userdata('usuario',$usuario);
 
@@ -55,7 +55,7 @@ class Login extends CI_Controller {
 
 						}
 
-						if ($tipo == "pro"){
+						if ($tipo == "2"){
 
 							$this->session->set_userdata('usuario',$usuario);
 
