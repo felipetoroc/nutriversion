@@ -23,7 +23,7 @@ Y cualquier establecimiento que requiera una evaluaci&oacute;n de sustentabilida
         </div>
         <div class="large-6 medium-6 columns">
             <div class="alert-box">
-                <p>coxino:</p>
+                <p>visión:</p>
                 <p>Queremos ser referentes en el &aacute;mbito nutricional 
 y inducir a la comunidad una vida saludable y
 libre de enfermedades, siendo un apoyo importante en la sociedad.
