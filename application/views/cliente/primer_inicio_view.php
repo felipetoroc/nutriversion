@@ -51,13 +51,13 @@
                                 }
                                 ?>
                  </select>
-                <LABEL>Factor de actividad: </LABEL>	
+                <LABEL>Factor de Actividad: </LABEL>
                 <select name="factor">
-                 <option value="">Selecione</option>
-                 <option value="1.2">sedentario</option>
-                 <option value="1.375">Actividad ligera</option>
+                 <option value="">Seleccione</option>
+                 <option value="1.2">Sedentario</option>
+                 <option value="1.375">Actividad Ligera</option>
                  <option value="1.55">Actividad Moderada</option>
-                 <option value="1.725">Actividad intensa</option>
+                 <option value="1.725">Actividad Intensa</option>
                  <option value="1.9">Actividad Muy Intensa</option>
                  </select>
                  

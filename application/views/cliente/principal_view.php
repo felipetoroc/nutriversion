@@ -1,14 +1,11 @@
 <script>
-function ocultarImagen()
-{
+function ocultarImagen(){
     document.getElementById('cargarImagen').style.display = 'none';
 }
-function subirImagen()
-{
+function subirImagen(){
     document.getElementById('cargarImagen').style.display = 'block';
 }
 </script>
-
 <div class="large-9 medium-9 columns">
     <div class="row">
         <div class="small-12 medium-3 large-3 columns">

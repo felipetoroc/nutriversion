@@ -6,8 +6,14 @@
    	    <input class="button tiny" name="editar" type="submit" id="editar" value="editar">
     </form>
     <input class="button tiny" type="button" name="nuevo" id="nuevo" value="nuevo">
-    <input class="button tiny" type="button" name="eliminar" id="eliminar" value="eliminar">
-     <table id="table_dietas" class="table">
+    <input class="button tiny alert" type="button" name="eliminar" id="eliminar" value="eliminar">
+    <input type="hidden" name="id_cliente" id="id_cliente" value="<?=$this->session->flashdata('id_cliente')?>">
+    <?php
+    if ($this->session->flashdata('id_cliente')){
+    ?>
+    <input class="button tiny" type="button" name="asignardieta" id="btnAsignarDietaA" value="Asignar Dieta a <?=strtoupper($this->session->flashdata('nombre_cliente')." ".$this->session->flashdata('apellido_cliente'))?>">
+    <?php } ?>
+    <table id="table_dietas" class="table">
         <thead>
             <tr>
             	<th>id</th>
@@ -19,4 +25,9 @@
             </tr>
         </thead>
     </table>
+</div>
+<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">Advertencia!</h2>
+    <p>Debe seleccionar una dieta de la lista para asignarla a un cliente.</p>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

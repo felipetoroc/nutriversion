@@ -1,10 +1,11 @@
 $(document).ready(function() {
 
     var tabla = $('#tabla').DataTable({
+        dom: 'frt',
         sAjaxSource: "http://localhost/nutriversion/index.php/clientepro/getClientes",
         responsive : true,
         columns: [
-            { data: "cliente_id" },
+            { data: "cliente_id" , visible : false},
             { data: "cliente_nombre"},
             { data: "cliente_apellido"}
         ]
@@ -21,6 +22,9 @@ $(document).ready(function() {
                 .done(function( data ) {
                     console.log(data);
                     var obj = $.parseJSON(data);
+                    $("#id_cliente").val(obj[0].cliente_id);
+                    $("#nombre_cliente").val(obj[0].cliente_nombre);
+                    $("#apellido_cliente").val(obj[0].cliente_apellido);
                     $("#niv_actividad").html(obj[0].nivel_actividad);
                     $("#altura").html(obj[0].altura);
                     $("#peso").html(obj[0].peso);
@@ -28,18 +32,31 @@ $(document).ready(function() {
                     $("#gr_corporal").html(obj[0].porcentaje_grasa);
                     $("#cons_cal_diario").html(obj[0].ccd);
                     if (obj[0].id_dieta == null){
-                        $("#resultBusquedaDieta").html("No encontrada");
+                        $("#resultBusquedaDieta").html("No hay datos para mostrar");
                     }else{
-                        var data= [{ "Id": "1", "name": "xxx", "age": "22" },
-                            { "Id": "1", "name": "yyy", "age": "15" },
-                            { "Id": "5", "name": "zzz", "age": "59" }];
-                        console.log(data.reduce(function(result, current) {
-                            result[current.Id] = result[current.Id] || [];
-                            result[current.Id].push(current);
-                            return result;
-                        }, {}));
+                        $.each(obj,function(key, value){
+                            if (value.porciones > 0){
+                                $("#"+value.id_comida+"-"+value.id_categoria).html("<strong>"+value.porciones+"</strong>");
+                            }else{
+                                $("#"+value.id_comida+"-"+value.id_categoria).html(value.porciones);
+                            }
+
+                        });
                     }
                 });
+        }
+    });
+    $("#btnAsignarDieta").on('click',function(){
+        var id_cliente = $("#id_cliente").val();
+        var nombre_cliente = $("#nombre_cliente").val();
+        var apellido_cliente = $("#apellido_cliente").val();
+        if ($("#id_cliente").val() != ""){
+            $.post( "http://localhost/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente})
+                .done(function(data){
+                    $( location ).attr("href", data);
+                });
+        }else{
+            $('#myModal').foundation('reveal', 'open');
         }
     });
 });

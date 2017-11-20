@@ -13,23 +13,36 @@ $(document).ready(function() {
 			
 			var chartdata = {
 				labels:fecha,
-				datasets: [
-				{
+				datasets: [{
 					label:'Evolucion de Peso',
 					backgroundColor: 'rgba(200,200,200,0.75)',
 					borderColor: 'rgba(200,200,200,0.75)',
 					hoverBackgroundColor:'rgba(200,200,200,1)',
 					hoverBorderColor:'rgba(200,200,200,1)',
 					data:peso
-				}
-			]
-		};
+				},
+				]
+			};
 			
 			var ctx = $("#mycanvas");
-			
+
 			var barGraph = new Chart(ctx,{
 				type: 'bar',
-				data: chartdata
+				data: chartdata,
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}],
+						xAxes: [{
+							ticks: {
+								autoSkip: false
+							}
+						}]
+					}
+				}
 			});
 		
 		},

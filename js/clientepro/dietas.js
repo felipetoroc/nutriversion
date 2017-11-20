@@ -54,4 +54,18 @@ $(document).ready(function(){
 		});
         
 	});
+    $("#btnAsignarDietaA").on('click',function(){
+        var id_dieta = table_dietas.cell('.selected',0).data();
+        var id_cliente = $("#id_cliente").val();
+        if(id_dieta != null){
+        	if (id_cliente != ""){
+            	$.post( "http://localhost/nutriversion/index.php/clientepro/asignarDietaACliente", {id_cliente:id_cliente,id_dieta:id_dieta})
+					.done(function(data){
+						$( location ).attr("href", data);
+					});
+			}
+        }else{
+            $('#myModal').foundation('reveal', 'open');
+        }
+    });
 });

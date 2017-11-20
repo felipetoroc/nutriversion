@@ -13,10 +13,18 @@ class Registro extends CI_Controller {
 	}
 	public function registrar()
 	{
-		$this->load->model('login/reg_model');
-		if($this->reg_model->newUser() == 1)
+		$nombre = $this->input->post('nombre');
+        $apellidos = $this->input->post('apellidos');
+        $rut = $this->input->post('rut');
+		$fechaNac = $this->input->post('fechaNac');
+		$email = $this->input->post('mail');
+		$sexo = $this->input->post('sexo');
+		$objetivo = $this->input->post('objetivo');
+        $this->load->model('login/reg_model');
+        $resultado = $this->reg_model->newUser($nombre,$apellidos,$rut,$fechaNac,$email,$sexo,$objetivo);
+		if($resultado->esrut == 1)
 		{
-			redirect('Registro/usuario_creado');
+			$this->usuario_creado();
 			/*$this->email->from('admin@presupuesto.esy.es', 'NUTRILIFE');
 			$this->email->to($this->input->post('mail')); 
 			$this->email->cc('admin@presupuesto.esy.es'); 
@@ -27,7 +35,10 @@ class Registro extends CI_Controller {
 			$this->email->send();
 
 			echo $this->email->print_debugger();*/
-		}
+		}else{
+		    $this->session->set_flashdata('error','Rut no valido');
+		    $this->index();
+        }
 	}
 	public function usuario_creado()
 	{

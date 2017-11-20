@@ -25,5 +25,15 @@ class ClientePro_model extends CI_Model
         $json = json_encode($query->result());
         return $json;
     }
+
+    function asignarDietaACliente($id_cliente,$id_dieta){
+        $data = array(
+            'id_cliente' => $id_cliente,
+            'id_dieta' => $id_dieta,
+            'fecha' => date('Y/m/d H:i:s')
+        );
+
+        $this->db->insert('cliente_dieta', $data);
+    }
 }
 ?>

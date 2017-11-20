@@ -119,11 +119,33 @@ class Clientepro extends CI_Controller
     }
 
     public function clientes(){
+        $this->load->model('clientepro/dietas_model');
+        $data['columnas'] = $this->dietas_model->cargar_columnas_tabla_edicion();
+        $data['filas'] = $this->dietas_model->cargar_filas_tabla_edicion();
         $this->load->view('clientepro/head_view');
         $this->load->view('clientepro/baner_view');
         $this->load->view('clientepro/topbar_view');
-        $this->load->view('clientepro/detalles_clientes_view');
+        $this->load->view('clientepro/detalles_clientes_view',$data);
         $this->load->view('clientepro/foot_view');
+    }
+
+    public function setFlashDataIdCliente(){
+        if ($this->input->post("id_cliente")) {
+            $this->session->set_flashdata('id_cliente',$this->input->post("id_cliente"));
+            $this->session->set_flashdata('nombre_cliente',$this->input->post("nombre_cliente"));
+            $this->session->set_flashdata('apellido_cliente',$this->input->post("apellido_cliente"));
+            echo base_url()."/index.php/clientepro/dietas";
+        }
+    }
+
+    public function asignarDietaACliente(){
+        if ($this->input->post("id_cliente")) {
+            $this->load->model('clientepro/clientePro_model');
+            $this->clientePro_model->asignarDietaACliente($this->input->post("id_cliente"),$this->input->post("id_dieta"));
+            echo base_url()."/index.php/clientepro/clientes";
+        }else{
+
+        }
     }
 }
 

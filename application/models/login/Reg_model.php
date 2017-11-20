@@ -2,33 +2,35 @@
 
 class Reg_model extends CI_Model {
 
-    var $cliente_nombre   = '';
-    var $cliente_apellido = '';
-	var $cliente_email = '';
-	var $cliente_usuario = '';
-	var $cliente_contrasena = '';
-	var $cliente_tipo = '';
-	var $objetivo = '';
-	var $cliente_sexo = '';
-
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
     }
     
-    function newUser()
-    {
-		$this->cliente_nombre = $this->input->post('nombre');
-		$this->cliente_apellido =  $this->input->post('apellidos');
-		$this->cliente_email = $this->input->post('mail');
-		$this->cliente_tipo = 'common';
-		$this->cliente_sexo = $this->input->post('sexo');
-        $this->cliente_usuario =  $this->input->post('usuario');
-		$this->cliente_contrasena = $this->encrypt->encode($this->input->post('pw'));
-		$this->objetivo = $this->input->post('objetivo');
-		$this->cliente_imagen_url= 'img/usuario.jpg';
-        return $this->db->insert('cliente',$this);
+    function newUser($nombre,$apellido,$rut,$fechaNac,$email,$sexo,$objetivo){
+        $query = $this->db->query("select validate_rut(".$this->db->escape($rut).") as esrut from dual");
+        $resultado = $query->row();
+        if ($resultado->esrut > 0) {
+            $data = array(
+                'cliente_nombre' => $nombre,
+                'cliente_apellido' => $apellido,
+                'cliente_rut' => $rut,
+                'cliente_email' => $email,
+                'cliente_fecha_nacimiento' => $fechaNac,
+                'cliente_sexo' => $sexo,
+                'objetivo' => $objetivo,
+                'cliente_tipo' => 1,
+                'cliente_imagen_url' => 'img/usuario.jpg'
+            );
+            $this->db->insert('cliente', $data);
+        }
+        return $resultado;
+    }
+
+    function getObjetivos(){
+        $query = $this->db->get('objetivo');
+        return $query->result();
     }
 }
 ?>

@@ -12,7 +12,7 @@
             <p class="text-center">Ingreso Usuario</p>
             <form method="post" action="<?php echo base_url() ?>index.php/Login/iniciar">
                 <label>Tipo de Usuario</label>
-                <input type="radio" name="tipo" value="common" /><label>Normal</label>
+                <input type="radio" name="tipo" value="common" /><label>Cliente</label>
                 <input type="radio" name="tipo" value="pro" /><label>Profesional</label>
                 <label>Usuario</label>
                 <input type="text" name="usuario">
