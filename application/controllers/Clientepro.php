@@ -23,6 +23,15 @@ class Clientepro extends CI_Controller
     }
     
     //en funcionamiento
+
+     public function ReporteEstadoFisico()
+    {
+        $this->load->view('clientepro/head_view');
+        $this->load->view('clientepro/baner_view');
+        $this->load->view('clientepro/topbar_view');
+        $this->load->view('clientepro/Reporte_estado_fisico_view');
+        $this->load->view('clientepro/foot_view');
+    }
     public function dietas()
     {
         $this->load->view('clientepro/head_view');
