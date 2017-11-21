@@ -1,4 +1,4 @@
-<div class="large-9 medium-9 columns">
+<div class="large-12 medium-12 small-12 columns">
     <div class="row">
         <ul class="example-orbit" data-orbit data-options="next_on_click:false;pause_on_hover:false;slide_number: false">
           <li>
@@ -12,7 +12,7 @@
           </li>
         </ul>
     </div>
-    <div class="row">
+    <!-- <div class="row"> 
         <div class="large-6 medium-6 columns">
             <div class="alert-box">
                 <p>MISION:</p>
@@ -30,5 +30,5 @@ libre de enfermedades, siendo un apoyo importante en la sociedad.
 </br></br></br></br></br></br></p>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>

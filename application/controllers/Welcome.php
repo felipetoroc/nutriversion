@@ -23,7 +23,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome/head_view');
 		$this->load->view('welcome/baner_view');
 		$this->load->view('welcome/topbar_view');
-		$this->load->view('welcome/sidebar_view');
+		/*$this->load->view('welcome/sidebar_view');*/
 		$this->load->view('welcome/principal_view');
 		$this->load->view('welcome/foot_view');
 	}
