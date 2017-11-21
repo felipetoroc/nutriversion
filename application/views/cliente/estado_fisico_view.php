@@ -1,7 +1,7 @@
 <div class="large-9 medium-9 columns">
     <div class="row">
         <div class="large-4 medium-4 columns">
-            <h3>Estado Fisico</h3>
+            <h3>Estado Físico</h3>
             <table>
             <?php
             foreach ($estado_fisico->result() as $row) {
@@ -50,7 +50,7 @@
         <div class="large-8 medium-8 columns">
             <div class="row">
                 <div class="large-12 medium-12 columns">
-                    <h3 align="center">Grafico de Evolucion de Peso</h3>
+                    <h3 align="center">Gráfico de Evolución de Peso</h3>
                     <div id ="chart-container" >
                         <canvas id="mycanvas"></canvas>
                     </div>

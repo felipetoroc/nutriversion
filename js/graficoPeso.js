@@ -14,7 +14,7 @@ $(document).ready(function() {
 			var chartdata = {
 				labels:fecha,
 				datasets: [{
-					label:'Evolucion de Peso',
+					label:'Evolución de Peso',
 					backgroundColor: 'rgba(200,200,200,0.75)',
 					borderColor: 'rgba(200,200,200,0.75)',
 					hoverBackgroundColor:'rgba(200,200,200,1)',
