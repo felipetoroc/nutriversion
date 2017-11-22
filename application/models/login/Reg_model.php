@@ -8,15 +8,16 @@ class Reg_model extends CI_Model {
         parent::__construct();
     }
     
-    function newUser($nombre,$apellido,$rut,$fechaNac,$email,$sexo,$objetivo){
+    function newUser($nombre,$apellido,$rut,$fechaNac,$email,$telefono,$sexo,$objetivo){
         $query = $this->db->query("select validate_rut(".$this->db->escape($rut).") as esrut from dual");
         $resultado = $query->row();
         if ($resultado->esrut > 0) {
             $data = array(
-                'cliente_nombre' => $nombre,
-                'cliente_apellido' => $apellido,
-                'cliente_rut' => $rut,
-                'cliente_email' => $email,
+                'cliente_nombre' => $this->db->escape_str($nombre),
+                'cliente_apellido' => $this->db->escape_str($apellido),
+                'cliente_rut' => $this->db->escape_str($rut),
+                'cliente_email' => $this->db->escape_str($email),
+                'cliente_telefono' => $this->db->escape_str($telefono),
                 'cliente_fecha_nacimiento' => $fechaNac,
                 'cliente_sexo' => $sexo,
                 'objetivo' => $objetivo,

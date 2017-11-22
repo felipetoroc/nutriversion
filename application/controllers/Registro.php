@@ -5,10 +5,14 @@ class Registro extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->model('login/reg_model');
+		$data = array(
+			'objetivos' => $this->reg_model->getObjetivos()
+		);
 		$this->load->view('login/head_view');
 		$this->load->view('login/baner_view');
 		$this->load->view('login/topbar_view');
-		$this->load->view('login/registro_view');
+		$this->load->view('login/registro_view',$data);
 		$this->load->view('login/foot_view');
 	}
 	public function registrar()
@@ -18,10 +22,11 @@ class Registro extends CI_Controller {
         $rut = $this->input->post('rut');
 		$fechaNac = $this->input->post('fechaNac');
 		$email = $this->input->post('mail');
+		$telefono = $this->input->post('telefono');
 		$sexo = $this->input->post('sexo');
 		$objetivo = $this->input->post('objetivo');
         $this->load->model('login/reg_model');
-        $resultado = $this->reg_model->newUser($nombre,$apellidos,$rut,$fechaNac,$email,$sexo,$objetivo);
+        $resultado = $this->reg_model->newUser($nombre,$apellidos,$rut,$fechaNac,$email,$telefono,$sexo,$objetivo);
 		if($resultado->esrut == 1)
 		{
 			$this->usuario_creado();
@@ -36,7 +41,7 @@ class Registro extends CI_Controller {
 
 			echo $this->email->print_debugger();*/
 		}else{
-		    $this->session->set_flashdata('error','Rut no valido');
+		    $this->session->set_flashdata('error','El Rut ingresado no es válido');
 		    $this->index();
         }
 	}
