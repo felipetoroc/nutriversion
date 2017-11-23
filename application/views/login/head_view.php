@@ -15,6 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
+  	
   	<script src="<?=base_url()?>/js/foundation.min.js"></script>
   	<script>
 		 $.datepicker.regional['es'] = {
@@ -51,7 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			  rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
 			  range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
 			  max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
-			  min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
+			  min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}."),
+			  lettersonly: jQuery.validator.format("El campo acepta solo letras")
 		});
 		$.datepicker.setDefaults($.datepicker.regional["es"]);
 	</script>

@@ -8,30 +8,43 @@ class Reg_model extends CI_Model {
         parent::__construct();
     }
     
-    function newUser($nombre,$apellido,$rut,$fechaNac,$email,$telefono,$sexo,$objetivo){
-        $query = $this->db->query("select validate_rut(".$this->db->escape($rut).") as esrut from dual");
+    function newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo,$objetivo){
+        $rutsinguion = str_replace('-','',$rut);
+        $rutsinpuntos = str_replace('.','',$rutsinguion);
+        $query = $this->db->query("select validate_rut(".$this->db->escape_str($rut).") as esrut from dual");
+        $query2 = $this->db->query("select valida_mail(".$this->db->escape($email).",".$this->db->escape_str($rutsinpuntos).") as existe from dual");
         $resultado = $query->row();
-        if ($resultado->esrut > 0) {
-            $data = array(
-                'cliente_nombre' => $this->db->escape_str($nombre),
-                'cliente_apellido' => $this->db->escape_str($apellido),
-                'cliente_rut' => $this->db->escape_str($rut),
-                'cliente_email' => $this->db->escape_str($email),
-                'cliente_telefono' => $this->db->escape_str($telefono),
-                'cliente_fecha_nacimiento' => $fechaNac,
-                'cliente_sexo' => $sexo,
-                'objetivo' => $objetivo,
-                'cliente_tipo' => 1,
-                'cliente_imagen_url' => 'img/usuario.jpg'
-            );
-            $this->db->insert('cliente', $data);
+        $resultado2 = $query2->row();
+        if ($resultado->esrut == 0) {
+            return 1;
+        }else{
+            if($resultado2->existe > 0){
+                return 2;
+            }else{
+                $data = array(
+                    'cliente_nombre' => $this->db->escape_str($nombre),
+                    'cliente_apellido' => $this->db->escape_str($apellidop)+" "+$this->db->escape_str($apellidom),
+                    'cliente_rut' => $this->db->escape_str($rutsinpuntos),
+                    'cliente_email' => $this->db->escape_str($email),
+                    'cliente_telefono' => $this->db->escape_str($telefono),
+                    'cliente_comuna_id' => $id_comuna,
+                    'cliente_direccion' => $this->db->escape_str($direccion),
+                    'cliente_fecha_nacimiento' => $fechaNac,
+                    'cliente_sexo' => $sexo,
+                    'objetivo' => $objetivo,
+                    'cliente_tipo' => 1,
+                    'cliente_imagen_url' => 'img/usuario.jpg'
+                );
+                $this->db->insert('cliente', $data);    
+                return 0;
+            }
         }
-        return $resultado;
     }
 
     function getObjetivos(){
         $query = $this->db->get('objetivo');
         return $query->result();
     }
+
 }
 ?>
