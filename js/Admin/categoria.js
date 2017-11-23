@@ -114,7 +114,7 @@ $(document).ready( function leer_registos(){
 
 			$.ajax({
 
-				url:"http://nutriversion.com/index.php/categoria_alimento/create",
+				url:"http://localhost/nutriversion/index.php/categoria_alimento/create",
 
 				type:'POST',
 
@@ -126,7 +126,7 @@ $(document).ready( function leer_registos(){
 
 					//table.ajax.reload();
 
-					table.ajax.url ('http://nutriversion.com/index.php/Categoria_alimento/categoria_data') .load ();
+					table.ajax.url ('http://localhost/nutriversion/index.php/Categoria_alimento/categoria_data') .load ();
 
 					$("#dialog").dialog("close");
 
@@ -176,7 +176,7 @@ $(document).ready( function leer_registos(){
 
 		if (categoria_id != null){
 
-		$.post("http://nutriversion.com/index.php/Categoria_alimento/eliminar_categoria", { categoria_id: categoria_id})
+		$.post("http://localhost/nutriversion/index.php/Categoria_alimento/eliminar_categoria", { categoria_id: categoria_id})
 
 		  .done(function( data ) {
 
@@ -210,7 +210,7 @@ $(document).ready( function leer_registos(){
 
 			$.ajax({
 
-				url:"http://nutriversion.com/index.php/categoria_alimento/editar_categoria",
+				url:"http://localhost/nutriversion/index.php/categoria_alimento/editar_categoria",
 
 				type:'POST',
 
@@ -220,7 +220,7 @@ $(document).ready( function leer_registos(){
 
 					$("#mens").html(result);
 
-					table.ajax.url ('http://nutriversion.com/index.php/Categoria_alimento/categoria_data') .load ();	
+					table.ajax.url ('http://localhost/nutriversion/index.php/Categoria_alimento/categoria_data') .load ();	
 
 					$("#dialog").dialog("close");
 
