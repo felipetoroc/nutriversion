@@ -7,8 +7,10 @@ class Cliente extends CI_Controller {
     {
 			parent::__construct();
             if(null == $this->session->userdata("usuario")){
-				if(null == $this->session->userdata("common")){
-					redirect("Welcome");	
+				if(null == $this->session->userdata("tipo_usuario")){
+					if($this->session->userdata("tipo_usuario") <> 1){
+						redirect("Welcome");	
+					}
 				}
 			}
     }

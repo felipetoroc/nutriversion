@@ -6,8 +6,10 @@ class Clientepro extends CI_Controller
     {
         parent::__construct();
         if (null == $this->session->userdata("usuario")) {
-            if (null == $this->session->userdata("pro")) {
-                redirect("Welcome");
+            if (null == $this->session->userdata("tipo_cliente")) {
+                if ($this->session->userdata("tipo_cliente") <> 2) {
+                    redirect("Welcome");
+                }
             }
         }
     }

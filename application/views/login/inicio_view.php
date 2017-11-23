@@ -12,8 +12,8 @@
                 <label>Tipo de Usuario</label>
                 <input type="radio" name="tipo" value="1" /><label>Paciente</label>
                 <input type="radio" name="tipo" value="2" /><label>Profesional</label>
-                <label>Usuario</label>
-                <input type="text" name="usuario">
+                <label>Rut</label>
+                <input type="text" name="rut">
                 <label>Contraseña</label>
                 <input type="password" name="pw">
                 <input type="submit" class="button radius" value="Iniciar Sesión">

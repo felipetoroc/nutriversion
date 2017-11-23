@@ -14,9 +14,9 @@ class Login_model extends CI_Model
 
     }
 
-    public function recuperar_id($usuario, $tipo)
+    public function recuperar_id($rut, $tipo)
     {
-        $query1 = $this->db->query("select * from cliente where cliente_usuario = '" . $usuario .
+        $query1 = $this->db->query("select * from cliente where cliente_rut = '" . $rut .
             "' and cliente_tipo = '" . $tipo . "'");
 
         $row = $query1->row();
@@ -34,21 +34,21 @@ class Login_model extends CI_Model
         }
     }
 
-    function valida_usuario($usuario, $pass, $tipo)
+    function valida_usuario($rut, $pass, $tipo)
     {
 
-        $query1 = $this->db->query("select retorna_contrasena('" . $usuario . "','" . $tipo .
+        $query1 = $this->db->query("select retorna_contrasena('" . $rut . "','" . $tipo .
             "') as resultado from dual");
 
         $row = $query1->row();
 
         if (isset($row)) {
 
-            $pass_desencriptada = $this->encrypt->decode($row->resultado);
+            $passBD = $row->resultado;
 
-            if ($pass_desencriptada == $pass) {
+            if ($passBD == sha1($pass)) {
 
-                $usuario_id = $this->recuperar_id($usuario, $tipo);
+                $usuario_id = $this->recuperar_id($rut, $tipo);
                 return $usuario_id;
 
             }

@@ -10,9 +10,9 @@
                 <label>Nombre</label>
                 <input type="text" id="nombre" name="nombre" minlength="2" maxlength="15" placeholder="Diego" required>
                 <label>Apellido Paterno</label>
-                <input type="text" name="apellidos1" minlength="2" maxlength="15" placeholder="Gonzales" required>
+                <input type="text" name="apellidop" minlength="2" maxlength="15" placeholder="Gonzales" required>
                 <label>Apellido Materno</label>
-                <input type="text" name="apellidos2" minlength="2" maxlength="15" placeholder="Sanchez" required>
+                <input type="text" name="apellidom" minlength="2" maxlength="15" placeholder="Sanchez" required>
                 <label>Rut</label>
                 <input type="text" name="rut" minlength="8" maxlength="12" placeholder="11111111-1" required>
                 <label>Fecha Nacimiento</label>
@@ -66,11 +66,11 @@
                       noSpace: true,
                       lettersonly: true
                   },
-                  apellidos1:{
+                  apellidop:{
                     noSpace: true,
                     lettersonly: true
                   },
-                  apellidos2:{
+                  apellidom:{
                     noSpace: true,
                     lettersonly: true
                   },
