@@ -5,14 +5,14 @@ class Cliente extends CI_Controller {
 	
 	public function __construct()
     {
-			parent::__construct();
-            if(null == $this->session->userdata("usuario")){
-				if(null == $this->session->userdata("tipo_usuario")){
-					if($this->session->userdata("tipo_usuario") <> 1){
-						redirect("Welcome");	
-					}
-				}
-			}
+		parent::__construct();
+       	if(null == $this->session->userdata("id")){
+            if(null == $this->session->userdata("rut")){
+                if($this->session->userdata("tipo_usuario") <> "1"){
+                    redirect("Welcome");
+                }   
+            }
+        }
     }
     //subir imagen
     public function actualizarUrlC(){
@@ -40,7 +40,7 @@ class Cliente extends CI_Controller {
         $data['uploadSuccess'] = $this->upload->data();
          $this->load->model("cliente/Cliente_model");
          echo $this->Cliente_model->actualizarUrlM($url);
-         $this->session->userdata('imagen_url',$url);
+         $this->session->set_userdata('imagen_url',$url);
          redirect('/cliente/', 'refresh');
          redirect('/cliente/', 'refresh');
          redirect('/cliente/', 'refresh');

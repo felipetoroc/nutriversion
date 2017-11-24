@@ -27,10 +27,10 @@ function subirImagen(){
             </div>
         </div>
         <div class="small-12 medium-9 large-9 columns">
-            <p>Datos de la cuenta:</p>
-            <table>
+            <h3>Datos de la cuenta:</h3>
+            <table class="tabla">
 				<tr>
-                    <td>ID</td><td><?=$this->session->userdata("id")?></td>
+                    <td>Rut</td><td><?=$this->session->userdata("rut")?></td>
                 </tr>
                 <tr>
                     <td>Nombre</td><td><?=$this->session->userdata("nombre")." ".$this->session->userdata("apellido")?></td>

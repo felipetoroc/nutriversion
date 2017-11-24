@@ -3,13 +3,26 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
+
 	public function index()
 	{
-		$this->load->view('login/head_view');
-		$this->load->view('login/baner_view');
-		$this->load->view('login/topbar_view');
-		$this->load->view('login/inicio_view');
-		$this->load->view('login/foot_view');
+		if($this->session->userdata("id")){
+			if($this->session->userdata("rut")){
+				if($this->session->userdata("tipo_usuario") == "1"){
+					redirect("Cliente");
+				}else{
+					if($this->session->userdata("tipo_usuario") == "2"){
+						redirect("Clientepro");
+					}
+				}
+			}
+		}else{
+			$this->load->view('login/head_view');
+			$this->load->view('login/baner_view');
+			$this->load->view('login/topbar_view');
+			$this->load->view('login/inicio_view');
+			$this->load->view('login/foot_view');
+		}
 	}
 
 	public function iniciar(){
@@ -23,16 +36,13 @@ class Login extends CI_Controller {
                     $resultado = $this->login_model->valida_usuario($rut,$pass,$tipo);
 					if($resultado > 0){
 						$id = $resultado;	
-						$this->session->set_userdata('id',$id);
-						if($tipo == "1"){
-							$this->session->set_userdata('rut',$rut);
-							$this->session->set_userdata('tipo_usuario','1');
-							redirect("Cliente");
-						}
-						if ($tipo == "2"){
-							$this->session->set_userdata('rut',$rut);
-							$this->session->set_userdata('tipo_usuario','2');
-							redirect("Clientepro");
+						$this->session->set_userdata("id",$id);
+						$this->session->set_userdata("rut",$rut);
+						$this->session->set_userdata("tipo_usuario",$tipo);
+						if($this->session->userdata("tipo_usuario") <> "2"){
+							$this->index();
+						}else{
+							echo "hola";
 						}
 					}else{
 						$this->session->set_flashdata('error', 'Rut Incorrecto.');

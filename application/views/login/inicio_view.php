@@ -3,7 +3,7 @@
         <div>
         	<p style="color:red">
         	<?php
-    			echo $this->session->flashdata('error');
+    			echo $this->session->userdata('tipo_cliente').$this->session->flashdata('error');
     		?>
             </p>
             <!-- Inicio formulario de login -->

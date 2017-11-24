@@ -12,7 +12,7 @@ class Reg_model extends CI_Model {
         $rutsinguion = str_replace('-','',$rut);
         $rutsinpuntos = str_replace('.','',$rutsinguion);
         $query = $this->db->query("select validate_rut(".$this->db->escape($rut).") as esrut from dual");
-        $query2 = $this->db->query("select valida_mail(".$this->db->escape($email).",".$this->db->escape_str($rutsinpuntos).") as existe from dual");
+        $query2 = $this->db->query("select valida_mail(".$this->db->escape($email).",".$this->db->escape($rutsinpuntos).") as existe from dual");
         $resultado = $query->row();
         $resultado2 = $query2->row();
         if ($resultado->esrut == 0) {
@@ -23,7 +23,7 @@ class Reg_model extends CI_Model {
             }else{
                 $data = array(
                     'cliente_nombre' => $this->db->escape_str($nombre),
-                    'cliente_apellido' => $this->db->escape_str($apellidop)+" "+$this->db->escape_str($apellidom),
+                    'cliente_apellido' => $this->db->escape_str($apellidop." ".$apellidom),
                     'cliente_rut' => $this->db->escape_str($rutsinpuntos),
                     'cliente_email' => $this->db->escape_str($email),
                     'cliente_telefono' => $this->db->escape_str($telefono),
