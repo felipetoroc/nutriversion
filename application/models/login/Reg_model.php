@@ -11,7 +11,7 @@ class Reg_model extends CI_Model {
     function newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo,$objetivo){
         $rutsinguion = str_replace('-','',$rut);
         $rutsinpuntos = str_replace('.','',$rutsinguion);
-        $query = $this->db->query("select validate_rut(".$this->db->escape_str($rut).") as esrut from dual");
+        $query = $this->db->query("select validate_rut(".$this->db->escape($rut).") as esrut from dual");
         $query2 = $this->db->query("select valida_mail(".$this->db->escape($email).",".$this->db->escape_str($rutsinpuntos).") as existe from dual");
         $resultado = $query->row();
         $resultado2 = $query2->row();
