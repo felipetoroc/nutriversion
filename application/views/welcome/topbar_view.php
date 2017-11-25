@@ -11,7 +11,7 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-        <li class="active"><a href="<?php echo base_url() ?>index.php/login">Iniciar Cuenta</a></li>
+        <li class="active"><a href="<?php echo base_url() ?>index.php/login"><?=$this->session->userdata('nombre')?></a></li>
         <li class="has-dropdown show-for-small-only">
         <a href="#">Secciones</a>
             <ul class="dropdown">

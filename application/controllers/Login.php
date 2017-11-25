@@ -6,23 +6,11 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata("id")){
-			if($this->session->userdata("rut")){
-				if($this->session->userdata("tipo_usuario") == "1"){
-					redirect("Cliente");
-				}else{
-					if($this->session->userdata("tipo_usuario") == "2"){
-						redirect("Clientepro");
-					}
-				}
-			}
-		}else{
-			$this->load->view('login/head_view');
-			$this->load->view('login/baner_view');
-			$this->load->view('login/topbar_view');
-			$this->load->view('login/inicio_view');
-			$this->load->view('login/foot_view');
-		}
+		$this->load->view('login/head_view');
+		$this->load->view('login/baner_view');
+		$this->load->view('login/topbar_view');
+		$this->load->view('login/inicio_view');
+		$this->load->view('login/foot_view');
 	}
 
 	public function iniciar(){
@@ -39,11 +27,7 @@ class Login extends CI_Controller {
 						$this->session->set_userdata("id",$id);
 						$this->session->set_userdata("rut",$rut);
 						$this->session->set_userdata("tipo_usuario",$tipo);
-						if($this->session->userdata("tipo_usuario") <> "2"){
-							$this->index();
-						}else{
-							echo "hola";
-						}
+						redirect('welcome');
 					}else{
 						$this->session->set_flashdata('error', 'Rut Incorrecto.');
 						redirect("Login/index");
