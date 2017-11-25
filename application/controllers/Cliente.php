@@ -3,17 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cliente extends CI_Controller {
 	
-	public function __construct()
-    {
-		parent::__construct();
-       	if(null == $this->session->userdata("id")){
-            if(null == $this->session->userdata("rut")){
-                if($this->session->userdata("tipo_usuario") <> "1"){
-                    redirect("Welcome");
-                }   
-            }
-        }
-    }
     //subir imagen
     public function actualizarUrlC(){
         $nombre_file= $this->input->post('url_imagen');

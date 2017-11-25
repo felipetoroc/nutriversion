@@ -2,20 +2,6 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Clientepro extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-        if(null == $this->session->userdata("id")){
-            if(null == $this->session->userdata("rut")){
-                if(null == $this->session->userdata("tipo_usuario")){
-                    if($this->session->userdata("tipo_usuario") <> "2"){
-                        redirect("Welcome");
-                    }   
-                }
-            }
-        }
-    }
-    
     //en funcionamiento
     public function index()
     {
@@ -147,7 +133,7 @@ class Clientepro extends CI_Controller
             $this->session->set_flashdata('id_cliente',$this->input->post("id_cliente"));
             $this->session->set_flashdata('nombre_cliente',$this->input->post("nombre_cliente"));
             $this->session->set_flashdata('apellido_cliente',$this->input->post("apellido_cliente"));
-            echo base_url()."/index.php/clientepro/dietas";
+            echo base_url()."//clientepro/dietas";
         }
     }
 
@@ -155,7 +141,7 @@ class Clientepro extends CI_Controller
         if ($this->input->post("id_cliente")) {
             $this->load->model('clientepro/clientePro_model');
             $this->clientePro_model->asignarDietaACliente($this->input->post("id_cliente"),$this->input->post("id_dieta"));
-            echo base_url()."/index.php/clientepro/clientes";
+            echo base_url()."//clientepro/clientes";
         }else{
 
         }
