@@ -45,6 +45,7 @@ class UsuarioIniciadoPaciente
 		if($session && !in_array($class,$this->controlador_no))
 		{
 			if(in_array($method,$this->metodo_no)){
+
 				redirect($this->urlcorrecta);
 				
 			}	

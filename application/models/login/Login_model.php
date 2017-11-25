@@ -14,19 +14,14 @@ class Login_model extends CI_Model
 
     }
 
-    public function recuperar_id($rut, $tipo)
+    public function recuperar_id($rut)
     {
-        $query1 = $this->db->query("select * from cliente where cliente_rut = '" . $rut .
-            "' and cliente_tipo = '" . $tipo . "'");
+        $query1 = $this->db->query("select * from cliente where cliente_rut = '" . $rut ."'");
 
         $row = $query1->row();
 
         if (isset($row)) {
-            $this->session->set_userdata('nombre', $row->cliente_nombre);
-            $this->session->set_userdata('apellido', $row->cliente_apellido);
-            $this->session->set_userdata('email', $row->cliente_email);
-            $this->session->set_userdata('imagen_url', $row->cliente_imagen_url);
-            return $row->cliente_id;
+            return $row;
 
         } else {
 
@@ -34,22 +29,20 @@ class Login_model extends CI_Model
         }
     }
 
-    function valida_usuario($rut, $pass, $tipo)
+    function valida_usuario($rut, $pass)
     {
 
-        $query1 = $this->db->query("select retorna_contrasena('" . $rut . "','" . $tipo .
-            "') as resultado from dual");
-
+        $query1 = $this->db->query("select retorna_contrasena('" . $rut . "') as resultado from dual");
         $row = $query1->row();
 
         if (isset($row)) {
 
             $passBD = $row->resultado;
 
-            if ($passBD == sha1($pass)) {
+            if ($passBD === sha1($pass)) {
 
-                $usuario_id = $this->recuperar_id($rut, $tipo);
-                return $usuario_id;
+                $usuario = $this->recuperar_id($rut);
+                return $usuario;
 
             }
 

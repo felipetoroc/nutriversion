@@ -9,9 +9,6 @@
             <!-- Inicio formulario de login -->
             <p class="text-center">Ingreso Usuario</p>
             <form method="post" action="<?php echo base_url() ?>index.php/Login/iniciar">
-                <label>Tipo de Usuario</label>
-                <input type="radio" name="tipo" value="1" /><label>Paciente</label>
-                <input type="radio" name="tipo" value="2" /><label>Profesional</label>
                 <label>Rut</label>
                 <input type="text" name="rut">
                 <label>Contraseña</label>

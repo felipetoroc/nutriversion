@@ -16,26 +16,28 @@ class Login extends CI_Controller {
 	public function iniciar(){
 		if($this->input->post("rut")){
 			if($this->input->post("pw")){
-				if($this->input->post("tipo")){
-					$rut = $this->input->post("rut");
-					$pass = $this->input->post("pw");
-					$tipo = $this->input->post("tipo");
-					$this->load->model('login/login_model');
-                    $resultado = $this->login_model->valida_usuario($rut,$pass,$tipo);
-					if($resultado > 0){
-						$id = $resultado;	
-						$this->session->set_userdata("id",$id);
-						$this->session->set_userdata("rut",$rut);
-						$this->session->set_userdata("tipo_usuario",$tipo);
-						redirect('welcome');
-					}else{
-						$this->session->set_flashdata('error', 'Rut Incorrecto.');
-						redirect("Login/index");
-                    }
+				$rut = $this->input->post("rut");
+				$pass = $this->input->post("pw");
+				$this->load->model('login/login_model');
+                $row = $this->login_model->valida_usuario($rut,$pass);
+				if(isset($row)){
+					$this->session->set_userdata('id',$row->cliente_id);
+	                $this->session->set_userdata('rut',$row->cliente_rut);
+	                $this->session->set_userdata('nombre',$row->cliente_nombre);
+	                $this->session->set_userdata('apellido',$row->cliente_apellido);
+	                $this->session->set_userdata('fechaNac',$row->cliente_fecha_nacimiento);
+	                $this->session->set_userdata('comuna_id',$row->cliente_comuna_id);
+	                $this->session->set_userdata('email',$row->cliente_email);
+	                $this->session->set_userdata('telefono',$row->cliente_telefono);
+	                $this->session->set_userdata('direccion',$row->cliente_direccion);
+	                $this->session->set_userdata('imagen_url',$row->cliente_imagen_url);
+	                $this->session->set_userdata('tipo_usuario',$row->cliente_tipo);
+	                $this->session->set_userdata('sexo',$row->cliente_sexo);
+		            redirect('welcome');
 				}else{
-					$this->session->set_flashdata('error', 'Debe selecciona tipo de usuario.');
+					$this->session->set_flashdata('error', 'Rut Incorrecto.');
 					redirect("Login/index");
-				}
+                }
 			}else{
 				$this->session->set_flashdata('error', 'Falta llenar el campo contraseña.');
 				redirect("Login/index");	

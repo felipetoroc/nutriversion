@@ -37,7 +37,7 @@ class Loginadmin extends CI_Controller {
 		}
 	}
 	public function cerrar(){
-		if(null !== $this->session->userdata("usuario")){
+		if(null !== $this->session->userdata("id")){
 			$this->session->sess_destroy();
 			redirect("welcome");
 		}
