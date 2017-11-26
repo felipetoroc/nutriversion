@@ -97,11 +97,16 @@ class Cliente extends CI_Controller {
     }
    
     function mi_contador(){
+    	$fecha = date("Y")."/".date("m")."/".date("d");
+    	$this->load->model('cliente/cliente_model');
+    	$data = array(
+    		'calorias_cal' => $this->cliente_model->get_sum_calorias_contador($fecha,$this->session->userdata("id"))
+    	);
 		$this->load->view('cliente/head_view');
 		$this->load->view('cliente/baner_view');
 		$this->load->view('cliente/topbar_view');
 		$this->load->view('cliente/sidebar_view');
-		$this->load->view('cliente/Contador_calorias_cliente_view');
+		$this->load->view('cliente/Contador_calorias_cliente_view',$data);
 		$this->load->view('cliente/foot_view');
     }
    

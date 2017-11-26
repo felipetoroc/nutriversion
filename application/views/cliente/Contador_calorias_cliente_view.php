@@ -2,10 +2,9 @@
 <div class="large-9 medium-9 columns">
     <div class="row">
     	<div class="large-12 columns">
-
-
- <input id="fecha_detalle" type="date" name="bday" style="width:300px" >
-      </div>
+        <input id="fecha_detalle" type="date" name="bday" style="width:300px" >
+        <h1 id="sum_cal">Calorias Consumidas en el día:<?=$calorias_cal?></h1>
+        </div>
 </div>
 </div>
  <input class="button" type="button" id="delete" value="Eliminar Alimento"><br>

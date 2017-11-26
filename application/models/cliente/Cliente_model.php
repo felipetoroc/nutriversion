@@ -274,5 +274,17 @@ class Cliente_model extends CI_Model {
     		return $resultado->cumplimiento;
     	}
     }
+
+    function get_sum_calorias_contador($fecha,$id_cliente){
+
+    	$query = $this->db->query("select fn_retorna_sum_conta('".$fecha."',".$id_cliente.") as conta_tot from dual");
+    	$resultado = $query->row();
+        if($resultado->conta_tot == null){
+    		return 0;
+    	}else{
+    		return $resultado->conta_tot;
+    	}
+
+    }
 }
 ?>
