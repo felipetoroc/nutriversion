@@ -7,8 +7,7 @@ $(document).ready(function(){
         responsive : true,
 		columns: [
 			{
-				data: "id_dieta",
-				visible: false
+				data: "id_dieta"
 			},
 			{ data: "nombre"},
 			{ data: "fecha_creacion" },

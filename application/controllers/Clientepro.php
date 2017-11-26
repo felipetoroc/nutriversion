@@ -42,6 +42,7 @@ class Clientepro extends CI_Controller
                 $data['filas'] = $this->dietas_model->cargar_filas_tabla_edicion();
                 $data['datos_dieta'] = $this->dietas_model->cargar_editor_dieta($id_dieta);
                 $data['datos_dieta_cabecera'] = $this->dietas_model->cargar_editor_dieta_cabecera($id_dieta);
+                $data['calorias'] = $this->dietas_model->getCaloriasDieta($id_dieta);
                 $this->load->view('clientepro/head_view');
                 $this->load->view('clientepro/baner_view');
                 $this->load->view('clientepro/topbar_view');
@@ -145,6 +146,13 @@ class Clientepro extends CI_Controller
         }else{
 
         }
+    }
+
+    public function getCaloriasDieta(){
+        $id_dieta = $this->input->post('id_dieta');
+        $this->load->model('clientepro/dietas_model');
+        $resultado = $this->dietas_model->getCaloriasDieta($id_dieta);
+        echo $resultado;
     }
 }
 

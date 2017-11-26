@@ -90,6 +90,12 @@ class Dietas_model extends CI_Model {
         $query = $this->db->query("SELECT * FROM dieta_detalle where id_dieta = ".$id_dieta);
 		return $query->result_array();
     }
+
+    function getCaloriasDieta($id_dieta){
+        $query = $this->db->query("select fn_retorna_promedio_calorias(".$id_dieta.") as calorias from dual");
+        $resultado = $query->row();
+        return $resultado->calorias;
+    }
 }
 
 ?>
