@@ -9,7 +9,6 @@ class Registro extends CI_Controller {
 		$this->load->model('login/reg_model');
 		$this->load->model('comuna_model');
 		$data = array(
-			'objetivos' => $this->reg_model->getObjetivos(),
 			'regiones' => $this->comuna_model->obtener_region()
 		);
 		$this->load->view('login/head_view');
@@ -30,9 +29,8 @@ class Registro extends CI_Controller {
 		$direccion = strtoupper($this->input->post('direccion'));
 		$telefono = $this->input->post('telefono');
 		$sexo = $this->input->post('sexo');
-		$objetivo = $this->input->post('objetivo');
         $this->load->model('login/reg_model');
-        $resultado = $this->reg_model->newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo,$objetivo);
+        $resultado = $this->reg_model->newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo);
 		if($resultado == 0)
 		{
 			$this->usuario_creado();

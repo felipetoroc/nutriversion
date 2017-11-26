@@ -10,7 +10,7 @@ class UsuarioNoIniciado
 	{
 		$this->ci =& get_instance();
 		$this->controlador_ok = ['welcome','login','registro','loginadmin'];
-		$this->metodo_ok = ['iniciar'];
+		$this->metodo_ok = ['iniciar','registrar'];
 		$this->metodo_no = ['cerrar'];
 		$this->ci->load->helper('url');
 		

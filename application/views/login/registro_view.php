@@ -39,15 +39,7 @@
                 <label>Sexo</label>
                 <INPUT type="radio" name="sexo" value="1" required> Hombre <br>
                 <INPUT type="radio" name="sexo" value="2" required> Mujer <br>
-                <LABEL>Objetivo </LABEL>
-                 <select name="objetivo" required>
-                        <option value="">Seleccione objetivo...</option>
-                        <?php
-                        foreach($objetivos as $objetivo){
-                            echo "<OPTION VALUE='".$objetivo->id_objetivo."'>".$objetivo->descr_objetivo."</OPTION>";
-                        }
-                        ?>
-                    </select>
+                
                 <input type="submit" class="button tiny radius" value="Registrarme">
             </form>
         </div>

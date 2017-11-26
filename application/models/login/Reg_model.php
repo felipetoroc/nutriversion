@@ -8,7 +8,7 @@ class Reg_model extends CI_Model {
         parent::__construct();
     }
     
-    function newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo,$objetivo){
+    function newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo){
         $rutsinguion = str_replace('-','',$rut);
         $rutsinpuntos = str_replace('.','',$rutsinguion);
         $query = $this->db->query("select validate_rut(".$this->db->escape($rut).") as esrut from dual");
@@ -31,7 +31,6 @@ class Reg_model extends CI_Model {
                     'cliente_direccion' => $this->db->escape_str($direccion),
                     'cliente_fecha_nacimiento' => $fechaNac,
                     'cliente_sexo' => $sexo,
-                    'objetivo' => $objetivo,
                     'cliente_tipo' => 1,
                     'cliente_imagen_url' => 'img/usuario.jpg'
                 );
@@ -39,11 +38,6 @@ class Reg_model extends CI_Model {
                 return 0;
             }
         }
-    }
-
-    function getObjetivos(){
-        $query = $this->db->get('objetivo');
-        return $query->result();
     }
 
 }
