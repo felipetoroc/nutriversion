@@ -33,17 +33,27 @@ class Registro extends CI_Controller {
         $resultado = $this->reg_model->newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo);
 		if($resultado == 0)
 		{
-			$this->usuario_creado();
-			/*$this->email->from('admin@presupuesto.esy.es', 'NUTRILIFE');
-			$this->email->to($this->input->post('mail')); 
-			$this->email->cc('admin@presupuesto.esy.es'); 
-
-			$this->email->subject('Correo de Prueba');
-			$this->email->message('Probando la clase email');	
-
-			$this->email->send();
-
-			echo $this->email->print_debugger();*/
+			$configs = array(
+			    'protocol'  =>  'smtp',
+			    'smtp_host' =>  'ssl://smtp.gmail.com',
+			    'smtp_user' =>  'felipetoro.c@gmail.com',
+			    'smtp_pass' =>  'pipe3837',
+			    'smtp_port' =>  '465'
+			);
+			$this->load->library("email", $configs);
+	        $this->email->set_newline("\r\n");
+	        $this->email->to("felipetoro.c@gmail.com");
+	        $this->email->from("felipetoro.c@gmail.com", "Mostafa Talebi");
+	        $this->email->subject("This is bloody amazing.");
+	        $this->email->message("Body of the Message");
+	        if($this->email->send())
+	        {
+	            echo "Done!";   
+	        }
+	        else
+	        {
+	            echo $this->email->print_debugger();    
+	        }
 		}else{
 			if($resultado == 1){
 			    $this->session->set_flashdata('error','El Rut ingresado no es válido');
@@ -72,6 +82,29 @@ class Registro extends CI_Controller {
 	public function comuna_data(){
 		$this->load->model('comuna_model');
 		echo json_encode($this->comuna_model->obtener_comuna());
+	}
+	public function enviarMail(){
+		$config['protocol']     = 'smpt';
+		$config['smtp_host']    = 'smtp.gmail.com';
+		$config['smtp_user']    = 'nutriversion.nutri@gmail.com';
+		$config['smtp_pass']    = 'nutri123';
+		$config['smtp_port']    = 465;
+
+		$this->load->library('email',$config);
+		$this->email->set_newline("\r\n");
+
+		$this->email->from('nutriversion.nutri@gmail.com', 'nutriversion');
+		$this->email->to('felipetoro.c@gmail.com'); 
+
+		$this->email->subject('Email Test');
+		$this->email->message('Testing the email class.');    
+
+		if($this->email->send()){
+			echo "email enviado";
+		}else{
+			echo $this->email->print_debugger();
+		}
+		
 	}
 	
 }
