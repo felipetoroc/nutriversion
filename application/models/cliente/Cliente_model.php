@@ -24,18 +24,18 @@ class Cliente_model extends CI_Model {
 		return $query;
 	}
 
-    function calculos(){
+    function calculos($id_cliente,$altura,$peso,$cuello,$cintura,$cadera,$factor,$objetivo){
         //***************calculo de IMC*********************
-	    $v_altura = $this->input->post('Altura');
-		$v_peso = $this->input->post('Peso');
+	    $v_altura = $altura;
+		$v_peso = $peso;
 		$imc = $v_peso/(($v_altura*0.01)*($v_altura*0.01));
 		//***************fin calculo imc********************
 
 		//**************inicio de calculo %grasa,masa magra,ccd y tmb *****************************
-		$v_cintura = $this->input->post('Cintura');
-		$v_cuello =  $this->input->post('Cuello');
-		$v_cadera =   $this->input->post('cadera');
-		$nivel_actividad = $this->input->post('factor');
+		$v_cintura = $cintura;
+		$v_cuello =  $cuello;
+		$v_cadera =   $cadera;
+		$nivel_actividad = $factor;
 		//recuperar sexo
         $v_sexo = $this->db->query('select retorna_sexo('.$this->session->userdata("id").') from dual');
 		if($v_sexo == 1){
@@ -58,7 +58,6 @@ class Cliente_model extends CI_Model {
 		$queryInsert = "insert into estado_fisico
 		(
 		 id_cliente
-		, edad
 		, altura
 		, peso
 		, cintura
@@ -74,14 +73,13 @@ class Cliente_model extends CI_Model {
 		)
 		values 
 		(
-		".$this->session->userdata('id').",".
-		$this->input->post('edad').",".
-		$this->input->post('Altura').",".
-		$this->input->post('Peso').",".
-		$this->input->post('Cintura').",".
-		$this->input->post('Cuello').",".
-		$this->input->post('cadera').",".
-		$this->input->post('factor')."
+		".$id_cliente.",".
+		$altura.",".
+		$peso.",".
+		$cintura.",".
+		$cuello.",".
+		$cadera.",".
+		$factor."
 		,now(),".
 		$imc.",".
 		$porcentajeGrasa2.",".
@@ -259,6 +257,11 @@ class Cliente_model extends CI_Model {
                                     a.id_cliente 
                                     ,c.categoria_id
                                     ,b.id_comida;");
+        return $query->result_array();
+    }
+
+    function getObjetivos(){
+    	$query = $this->db->get("objetivo");
         return $query->result_array();
     }
 }

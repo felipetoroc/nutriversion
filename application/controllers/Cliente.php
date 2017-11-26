@@ -57,16 +57,29 @@ class Cliente extends CI_Controller {
 			$data['estado_fisico'] = $this->cliente_model->recuperar_estado();
 			$this->load->view('cliente/estado_fisico_view',$data);
 		}else{
-			$this->load->view('cliente/primer_inicio_view');
+			/*if ($this->session->flashdata('autorizado_por')){*/
+				$data['objetivos'] = $this->cliente_model->getObjetivos();
+				$this->load->view('cliente/primer_inicio_view',$data);
+			/*}else{
+				$this->load->view('cliente/autorizacion_view');
+			}*/
 		}
 		$this->load->view('cliente/foot_view');
 	}
 	public function nuevo_estado(){
+		$id_cliente = $this->session->userdata('id');
+		$altura = $this->input->post('Altura');
+		$peso = $this->input->post('Peso');
+		$cuello = $this->input->post('Cuello');
+		$cintura = $this->input->post('Cintura');
+		$cadera = $this->input->post('Cadera');
+		$factor = $this->input->post('factor');
+		$objetivo = $this->input->post('objetivo');
 		$this->load->model("cliente/cliente_model");
 		//echo $this->cliente_model->insertar_estado();
-		$this->cliente_model->calculos();
-		redirect('/cliente/estado');
-		
+		if($this->cliente_model->calculos($id_cliente,$altura,$peso,$cuello,$cintura,$cadera,$factor,$objetivo)){
+			redirect('cliente/estado');
+		}
 	}
 	
 	public function calcular_datos(){
@@ -148,6 +161,32 @@ class Cliente extends CI_Controller {
         $this->load->view('cliente/sidebar_view');
         $this->load->view('cliente/misDietas_view',$data);
         $this->load->view('cliente/foot_view');
+    }
+
+    function verificarProfesional(){
+    	if($this->input->post("rut")){
+			if($this->input->post("pw")){
+				$rut = $this->input->post("rut");
+				$pass = $this->input->post("pw");
+				$this->load->model('login/login_model');
+                $row = $this->login_model->valida_usuario($rut,$pass);
+				if(isset($row)){
+	                if($row->cliente_tipo == '2'){
+	                	$this->session->set_flashdata('autorizado_por',$row->cliente_rut);
+	                	redirect("cliente/estado");
+	                }
+				}else{
+					$this->session->set_flashdata('error', 'Datos Incorrectos');
+					redirect("cliente/estado");
+                }
+			}else{
+				$this->session->set_flashdata('error', 'Falta llenar el campo contraseña.');
+				redirect("cliente/estado");	
+			}
+		}else{
+			$this->session->set_flashdata('error', 'Falta llenar el campo rut.');
+			redirect("cliente/estado");	
+		}
     }
 }
 ?>
