@@ -7,8 +7,8 @@
             <select name="tipo_comida" id="tipo_comida">
             <option value ="" >Elija una opcion...</option>
             <option value ="1" >Desayuno</option>
-            <option value ="2" >Almuerzo</option>
-            <option value ="3" >Colacion</option>
+            <option value ="3" >Almuerzo</option>
+            <option value ="2" >Colacion</option>
             <option value ="4" >Once</option>
             <option value ="5" >Cena</option>
             </select><BR>
