@@ -32,16 +32,7 @@ $(document).ready(function(){
         }
     });
 	
-	$("#editar").on('click',function(){
-		
-		var dieta_seleccionada = table_dietas.cell('.selected',0).data();
-		if(dieta_seleccionada != null){
-		  $("#formEnvEditar").submit();
-		}else{
-				$('#selecionarDieta').foundation('reveal', 'open');
-		}
-		
-	});
+	
 	
 	$("#eliminar").on('click',function(){
 		var dieta_seleccionada = table_dietas.cell('.selected',0).data();

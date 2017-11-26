@@ -44,7 +44,7 @@
     <div class="row">
         <div class="large-12 medium-12 columns">
             <p class="text-center">
-                <INPUT type="submit" class="button tiny" value="Enviar"> <INPUT type="reset" class="button tiny">
+                <INPUT type="submit" class="button tiny" value="Cargar Físico"> <INPUT type="reset" class="button tiny"  value="Limpiar">
             </p>
         </div>
     </div>

@@ -179,6 +179,7 @@ $(document).ready( function leer_registos(){
 					table.ajax.url ('http://localhost/nutriversion/index.php/Categoria_alimento/contador_data') .load ();
 
 					$("#dialog").dialog("close");
+						$('#ingresoContador').foundation('reveal', 'open');
 
 				}
 

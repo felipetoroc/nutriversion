@@ -32,3 +32,9 @@
         </div>
     </div>
 </div>
+
+<div id="ingresoContador" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">Advertencia!</h2>
+    <p>Alimento Ingresado correxctamente</p>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
