@@ -26,26 +26,8 @@
         </thead>
     </table>
 </div>
-<div id="selecionarDieta" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <h2 id="modalTitle">Advertencia!</h2>
-    <p>Debe seleccionar una dieta de la lista.</p>
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
-
-<div id="dietaEliminada" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <h2 id="modalTitle">Advertencia!</h2>
-    <p>la dieta fue eliminada</p>
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
-
-<div id="dietaCreada" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <h2 id="modalTitle">Advertencia!</h2>
-    <p>Dieta creada disponible para su edición</p>
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
-
-<div id="myModal2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <h2 id="modalTitle">Advertencia!</h2>
-    <p>Favor selecione un paciente.</p>
+<div id="myModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="mensajeErrorTitulo">Advertencia!</h2>
+    <p id="mensajeError"></p>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
