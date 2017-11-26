@@ -7,11 +7,11 @@
     </form>
     <input class="button tiny" type="button" name="nuevo" id="nuevo" value="nuevo">
     <input class="button tiny alert" type="button" name="eliminar" id="eliminar" value="eliminar">
-    <input type="hidden" name="id_cliente" id="id_cliente" value="<?=$this->session->flashdata('id_cliente')?>">
+    <input type="hidden" name="id_cliente" id="id_cliente" value="<?=$this->session->userdata('id_cliente')?>">
     <?php
-    if ($this->session->flashdata('id_cliente')){
+    if ($this->session->userdata('id_cliente')){
     ?>
-    <input class="button tiny" type="button" name="asignardieta" id="btnAsignarDietaA" value="Asignar Dieta a <?=strtoupper($this->session->flashdata('nombre_cliente')." ".$this->session->flashdata('apellido_cliente'))?>">
+    <input class="button tiny" type="button" name="asignardieta" id="btnAsignarDietaA" value="Asignar Dieta a <?=strtoupper($this->session->userdata('nombre_cliente')." ".$this->session->userdata('apellido_cliente'))?>">
     <?php } ?>
     <table id="table_dietas" class="table">
         <thead>

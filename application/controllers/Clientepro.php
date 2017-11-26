@@ -130,10 +130,10 @@ class Clientepro extends CI_Controller
 
     public function setFlashDataIdCliente(){
         if ($this->input->post("id_cliente")) {
-            $this->session->set_flashdata('id_cliente',$this->input->post("id_cliente"));
-            $this->session->set_flashdata('nombre_cliente',$this->input->post("nombre_cliente"));
-            $this->session->set_flashdata('apellido_cliente',$this->input->post("apellido_cliente"));
-            echo base_url()."//clientepro/dietas";
+            $this->session->set_userdata('id_cliente',$this->input->post("id_cliente"));
+            $this->session->set_userdata('nombre_cliente',$this->input->post("nombre_cliente"));
+            $this->session->set_userdata('apellido_cliente',$this->input->post("apellido_cliente"));
+            echo base_url()."index.php/clientepro/dietas";
         }
     }
 
@@ -141,7 +141,7 @@ class Clientepro extends CI_Controller
         if ($this->input->post("id_cliente")) {
             $this->load->model('clientepro/clientePro_model');
             $this->clientePro_model->asignarDietaACliente($this->input->post("id_cliente"),$this->input->post("id_dieta"));
-            echo base_url()."//clientepro/clientes";
+            echo base_url()."index.php/clientepro/clientes";
         }else{
 
         }

@@ -63,7 +63,7 @@
                     foreach ($filas as $fila){
                         echo "<tr><td>".$fila['categoria_descr']."</td>";
                         for($columna = 1;$columna <= 5;$columna++){
-                            echo "<td><label id='".$columna."-".$fila['categoria_id']."' >";
+                            echo "<td><label class='porciones' id='".$columna."-".$fila['categoria_id']."' >";
 
                             echo "</label></td>";
                         }

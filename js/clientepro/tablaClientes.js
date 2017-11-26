@@ -32,8 +32,10 @@ $(document).ready(function() {
                     $("#gr_corporal").html(obj[0].porcentaje_grasa);
                     $("#cons_cal_diario").html(obj[0].ccd);
                     if (obj[0].id_dieta == null){
+                        $(".porciones").html("");
                         $("#resultBusquedaDieta").html("No hay datos para mostrar");
                     }else{
+                        $("#resultBusquedaDieta").html("");
                         $.each(obj,function(key, value){
                             if (value.porciones > 0){
                                 $("#"+value.id_comida+"-"+value.id_categoria).html("<strong>"+value.porciones+"</strong>");

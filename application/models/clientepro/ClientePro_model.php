@@ -19,7 +19,7 @@ class ClientePro_model extends CI_Model
         $this->db->join('cliente_dieta','cliente.cliente_id = cliente_dieta.id_cliente','LEFT');
         $this->db->join('dieta_cabecera','cliente_dieta.id_dieta = dieta_cabecera.id_dieta','LEFT');
         $this->db->join('dieta_detalle','dieta_cabecera.id_dieta = dieta_detalle.id_dieta','LEFT');
-        $this->db->where('cliente_tipo','common');
+        $this->db->where('cliente_tipo','1');
         $this->db->where('cliente_id',$id_cliente);
         $query = $this->db->get();
         $json = json_encode($query->result());
