@@ -52,8 +52,9 @@ $(document).ready(function() {
         var id_cliente = $("#id_cliente").val();
         var nombre_cliente = $("#nombre_cliente").val();
         var apellido_cliente = $("#apellido_cliente").val();
+        var ccd = $("#cons_cal_diario").html();
         if ($("#id_cliente").val() != ""){
-            $.post( "http://localhost/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente})
+            $.post( "http://localhost/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente,ccd:ccd})
                 .done(function(data){
                     $( location ).attr("href", data);
                 });

@@ -42,6 +42,7 @@
         </div>
         <div class="large-6 medium-6 columns">
             <h1 id="calorias"><?=$calorias?></h1>
+            <h1><?=$this->session->userdata("ccd")?></h1>
         </div>
     </div>
 </div>

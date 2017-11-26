@@ -134,6 +134,7 @@ class Clientepro extends CI_Controller
             $this->session->set_userdata('id_cliente',$this->input->post("id_cliente"));
             $this->session->set_userdata('nombre_cliente',$this->input->post("nombre_cliente"));
             $this->session->set_userdata('apellido_cliente',$this->input->post("apellido_cliente"));
+            $this->session->set_userdata('ccd',$this->input->post("ccd"));
             echo base_url()."index.php/clientepro/dietas";
         }
     }
