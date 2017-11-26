@@ -153,7 +153,9 @@ class Cliente extends CI_Controller {
             "dieta" => json_decode($this->Cliente_model->getDietaByIdCliente($this->session->userdata("id"))),
             "columnas" => $this->Cliente_model->cargar_columnas_tabla_dieta(),
             "filas" => $this->Cliente_model->cargar_filas_tabla_dieta(),
-            "consumo" => $this->Cliente_model->getAlimentosConsumidos($this->session->userdata("id"))
+            "consumo" => $this->Cliente_model->getAlimentosConsumidos($this->session->userdata("id")),
+            "cumplimiento" => $this->Cliente_model->getCumplimiento($this->session->userdata("id"))
+
         );
         $this->load->view('cliente/head_view');
         $this->load->view('cliente/baner_view');

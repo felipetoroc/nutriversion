@@ -264,5 +264,15 @@ class Cliente_model extends CI_Model {
     	$query = $this->db->get("objetivo");
         return $query->result_array();
     }
+
+    function getCumplimiento($id_cliente){
+    	$query = $this->db->query("select fn_retorna_cumplimiento(".$id_cliente.") as cumplimiento from dual");
+    	$resultado = $query->row();
+    	if($resultado->cumplimiento == null){
+    		return 0;
+    	}else{
+    		return $resultado->cumplimiento;
+    	}
+    }
 }
 ?>

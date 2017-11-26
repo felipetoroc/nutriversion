@@ -1,4 +1,16 @@
-<div class="large-5 medium-10 columns">
+<div class="large-9 medium-9 columns">
+    <div class="row">
+        <div class="large-6 medium-6 columns">
+        <h2 class="text-center">Dieta Paciente</h2>
+        </div>
+        <div class="large-6 medium-6 columns">
+        <h2 class="text-center">Dieta Paciente</h2>
+        </div>
+    </div>   
+    <div class="row">
+ <div class="large-6 medium-6 columns">
+       
+     
     <table>
         <thead>
         <tr aria-rowspan="2">
@@ -42,11 +54,40 @@
         }
         ?>
         </tbody>
-    </table>
-</div>
+    </table> </div>
+
+    <div class="large-6 medium-6 columns">
+
+<p class="text-center">
+    <?php       
+        if($cumplimiento == 0 )
+        { ?>
+            <img src="<?=base_url()."img/medidor-11.png" ?>" width="80%" height="80%">
+        <?php }
+        if($cumplimiento > 0 && $cumplimiento <= 0.40)
+        { ?>
+            <img src="<?=base_url()."img/medidor-12.png" ?>" width="80%" height="80%">
+        <?php }
+        if($cumplimiento > 0.40  && $cumplimiento <= 0.80)
+        { ?>
+            <img src="<?=base_url()."img/medidor-13.png" ?>" width="80%" height="80%">
+        <?php }
+        if($cumplimiento > 0.80 && $cumplimiento < 1)
+        { ?>
+            <img src="<?=base_url()."img/medidor-14.png" ?>" width="80%" height="80%">
+        <?php }
+        if($cumplimiento == 1)
+        { ?>
+            <img src="<?=base_url()."img/medidor-15.png" ?>" width="80%" height="80%">
+        <?php }
+        ?>
+</p>   
+  </div>
+  </div>
+</div> 
 <script>
     $(document).ready(function(){
         var real = $("#real").html();
-        alert(real);
+        //alert(real);
     });
 </script>

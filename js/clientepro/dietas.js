@@ -31,25 +31,40 @@ $(document).ready(function(){
 			$('#nombre_dieta').val(table_dietas.cell('.selected',1).data());
         }
     });
-
+	
+	$("#editar").on('click',function(){
+		
+		var dieta_seleccionada = table_dietas.cell('.selected',0).data();
+		if(dieta_seleccionada != null){
+		  $("#formEnvEditar").submit();
+		}else{
+				$('#selecionarDieta').foundation('reveal', 'open');
+		}
+		
+	});
+	
 	$("#eliminar").on('click',function(){
 		var dieta_seleccionada = table_dietas.cell('.selected',0).data();
 		if(dieta_seleccionada != null){
 			$.post( "http://localhost/nutriversion/index.php/clientepro/eliminar_dieta", {id_dieta:dieta_seleccionada})
 			  .done(function( data ) {
 				$( "#result" ).html( data );
+				$('#dietaEliminada').foundation('reveal', 'open');
                 table_dietas.ajax.url('http://localhost/nutriversion/index.php/clientepro/dietas_data').load();
 			});
+			
 		}else{
-			alert("No hay dieta seleccionada, seleccione una");
+			$('#selecionarDieta').foundation('reveal', 'open');
 		}
 	});
 
     $("#nuevo" ).click(function() {
         var nuevo = $("#nuevo").val();
+		
        $.post( "http://localhost/nutriversion/index.php/clientepro/crear_dieta", {nuevo:nuevo})
 		  .done(function( data ) {
 			$( "#resultado" ).html( data );
+			$('#dietaCreada').foundation('reveal', 'open');
             table_dietas.ajax.url('http://localhost/nutriversion/index.php/clientepro/dietas_data').load();
 		});
         
@@ -65,7 +80,7 @@ $(document).ready(function(){
 					});
 			}
         }else{
-            $('#myModal').foundation('reveal', 'open');
+            $('#myModal2').foundation('reveal', 'open');
         }
     });
 });
