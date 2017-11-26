@@ -8,7 +8,7 @@ class ClientePro_model extends CI_Model
     }
 
     function getClientes(){
-        $query = $this->db->get_where('cliente', array('cliente_tipo' => 'common'));
+        $query = $this->db->get_where('cliente', array('cliente_tipo' => '1'));
         $json = json_encode(array('data' => $query->result()));
         return $json;
     }
