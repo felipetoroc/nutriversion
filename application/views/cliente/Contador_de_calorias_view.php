@@ -54,3 +54,9 @@
         </div>
     </div>
 </div>
+
+<div id="ingresoContador" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">Éxito!</h2>
+    <p>Alimento Ingresado correctamente.</p>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
