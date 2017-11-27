@@ -16,7 +16,7 @@ class Login_model extends CI_Model
 
     public function recuperar_id($rut)
     {
-        $query1 = $this->db->query("select * from cliente where cliente_rut = '" . $rut ."'");
+        $query1 = $this->db->query("select * from cliente inner join comuna on cliente.cliente_comuna_id = comuna.comuna_id inner join provincia on comuna.comuna_provincia_id = provincia.provincia_id inner join region on provincia.provincia_region_id = region.region_id where cliente_rut = '" . $rut ."'");
 
         $row = $query1->row();
 

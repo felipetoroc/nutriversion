@@ -33,6 +33,9 @@ class Login extends CI_Controller {
 	                $this->session->set_userdata('imagen_url',$row->cliente_imagen_url);
 	                $this->session->set_userdata('tipo_usuario',$row->cliente_tipo);
 	                $this->session->set_userdata('sexo',$row->cliente_sexo);
+	                $this->session->set_userdata('comuna_nombre',$row->COMUNA_NOMBRE);
+	                $this->session->set_userdata('region_nombre',$row->REGION_NOMBRE);
+	                $this->session->set_userdata('provincia_nombre',$row->PROVINCIA_NOMBRE);
 		            redirect('welcome');
 				}else{
 					$this->session->set_flashdata('error', 'Rut Incorrecto.');
