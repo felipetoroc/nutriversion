@@ -3,7 +3,8 @@
     <div class="row">
     	<div class="large-12 columns">
         <input id="fecha_detalle" type="date" name="bday" style="width:300px" >
-        <h1 id="sum_cal">Calorias Consumidas en el día:<?=$calorias_cal?></h1>
+        <h5 style="color:green" id="sum_cal">Calorias Consumidas Hoy:</h5>
+        <h5 style="color:grey"><?=$calorias_cal?></h5>
         </div>
 </div>
 </div>
@@ -30,4 +31,9 @@
     	<div id="footerCallback"></div>
         </div>
     </div>
+</div>
+<div id="myModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">Advertencia!</h2>
+    <p id="mensajeError"></p>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

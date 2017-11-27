@@ -155,6 +155,13 @@ class Clientepro extends CI_Controller
         $resultado = $this->dietas_model->getCaloriasDieta($id_dieta);
         echo $resultado;
     }
+    public function cancelarAsignacion(){
+        $this->session->unset_userdata('id_cliente');
+        $this->session->unset_userdata('nombre_cliente');
+        $this->session->unset_userdata('apellido_cliente');
+        $this->session->unset_userdata('ccd');
+        echo base_url('index.php/clientepro/clientes');
+    }
 }
 
 ?>
