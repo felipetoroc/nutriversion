@@ -33,27 +33,7 @@ class Registro extends CI_Controller {
         $resultado = $this->reg_model->newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo);
 		if($resultado == 0)
 		{
-			$configs = array(
-			    'protocol'  =>  'smtp',
-			    'smtp_host' =>  'ssl://smtp.gmail.com',
-			    'smtp_user' =>  'felipetoro.c@gmail.com',
-			    'smtp_pass' =>  'pipe3837',
-			    'smtp_port' =>  '465'
-			);
-			$this->load->library("email", $configs);
-	        $this->email->set_newline("\r\n");
-	        $this->email->to("felipetoro.c@gmail.com");
-	        $this->email->from("felipetoro.c@gmail.com", "Mostafa Talebi");
-	        $this->email->subject("This is bloody amazing.");
-	        $this->email->message("Body of the Message");
-	        if($this->email->send())
-	        {
-	            echo "Done!";   
-	        }
-	        else
-	        {
-	            echo $this->email->print_debugger();    
-	        }
+			redirect('registro/usuario_creado');
 		}else{
 			if($resultado == 1){
 			    $this->session->set_flashdata('error','El Rut ingresado no es válido');
