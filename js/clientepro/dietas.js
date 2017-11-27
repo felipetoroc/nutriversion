@@ -12,7 +12,10 @@ $(document).ready(function(){
 			{ data: "nombre"},
 			{ data: "fecha_creacion" },
             { data: "fecha_modificacion" },
-            { data: "estado" },
+            { 
+            	data: "estado",
+            	visible: false
+            },
             { data: "creado_por" }
 		]
 	});

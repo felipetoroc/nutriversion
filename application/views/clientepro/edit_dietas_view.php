@@ -2,8 +2,8 @@
 
 <div class="large-12 columns">
     <div class="row">
-        <a class="button tiny" href="<?=base_url()?>index.php/clientepro/dietas">Atras</a>
-        <input class="button tiny" type="button" name="confirmar" id="confirmar" value="Confirmar Dieta">
+        <a class="button tiny" href="<?=base_url()?>index.php/clientepro/dietas">OK</a>
+        <!--<input class="button tiny" type="button" name="confirmar" id="confirmar" value="Confirmar Dieta">-->
     </div>
     <div class="row">
         <div class="large-6 medium-6 columns">
