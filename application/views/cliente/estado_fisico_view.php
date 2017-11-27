@@ -57,51 +57,51 @@
                 </div>
             </div>
             <div class="row">
-                <div  class="large-12 medium-12 columns">
+                <div  class="large-12 medium-12 columns" align="center">
                     <?php
                     if($sexo=="1")
                     {
                         if($imc > 0 && $imc < 18.5)
                         { ?>
-                            <img src="<?=base_url()."img/mono1.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mono1.png" ?>" width="60%" height="60%">
                         <?php }
                         if($imc >= 18.5 && $imc <= 24.9)
                         { ?>
-                            <img src="<?=base_url()."img/mono2.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mono2.png" ?>" width="60%" height="60%">
                         <?php }
                         if($imc >= 25  && $imc <= 29.9)
                         { ?>
-                            <img src="<?=base_url()."img/mono3.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mono3.png" ?>" width="60%" height="60%">
                         <?php }
                         if($imc >= 30 && $imc <= 39)
                         { ?>
-                            <img src="<?=base_url()."img/mono4.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mono4.png" ?>" width="60%" height="60%">
                         <?php }
                         if($imc >= 40)
                         { ?>
-                            <img src="<?=base_url()."img/mono5.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mono5.png" ?>" width="60%" height="60%">
                         <?php }
                     }else
                     {
                         if($imc > 0 && $imc < 18.5)
                         { ?>
-                            <img src="<?=base_url()."img/mona1.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mona1.png" ?>" width="60%" height="60%">
                         <?php }
                         if($imc >= 18.5 && $imc <= 24.9 )
                         { ?>
-                            <img src="<?=base_url()."img/mona2.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mona2.png" ?>" width="60%" height="60%">
                         <?php }
                         if($imc >= 25  && $imc <= 29.9 )
                         { ?>
-                            <img src="<?=base_url()."img/mona3.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mona3.png" ?>" width="60%" height="60%">
                         <?php }
                         if($imc >= 30 && $imc <= 39)
                         { ?>
-                            <img src="<?=base_url()."img/mona4.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mona4.png" ?>" width="60%" height="60%">
                         <?php }
                         if($imc >= 40)
                         { ?>
-                            <img src="<?=base_url()."img/mona5.png" ?>" width="40px" height="40px">
+                            <img src="<?=base_url()."img/mona5.png" ?>" width="60%" height="60%">
                         <?php }
                     } ?>
                 </div>
