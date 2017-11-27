@@ -84,7 +84,9 @@ $(document).ready( function leer_registos(){
 
 		}else{
 
-			alert("Debe seleccionar un registro");	
+			$("#modalTitle").html("Error!");
+			$("#mensajeError").html("Para eliminar un alimento debe seleccionarlo en la lista.");
+			$('#myModal').foundation('reveal', 'open');
 
 		}	
 
