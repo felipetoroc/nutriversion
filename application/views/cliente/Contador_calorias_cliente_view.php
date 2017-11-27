@@ -1,34 +1,43 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/cliente/ver_contador.js"></script>
-<div class="large-9 medium-9 columns">
-    <div class="row">
-    	<div class="large-12 columns">
-        <input id="fecha_detalle" type="date" name="bday" style="width:300px" >
-        <h5 style="color:green" id="sum_cal">Calorias Consumidas Hoy:</h5>
-        <h5 style="color:grey"><?=$calorias_cal?></h5>
+<div class="row">
+    <div class="large-12 medium-12 small-12 columns">
+        <div class="row">
+        	<div class="large-6 medium-6 columns">
+                <div class="large-6 columns">
+                    <p">Ver alimentos consumidos el:</p>
+                </div>
+                <div class="large-6 columns">
+                    <input id="fecha_detalle" type="date" name="bday" >
+                </div>
+            </div>
+            <div class="large-6 medium-6 columns">
+                <h3 style="color:green" id="sum_cal">Calorias Consumidas Hoy: <?=$calorias_cal?></h3>
+            </div>
         </div>
-</div>
-</div>
- <input class="button" type="button" id="delete" value="Eliminar Alimento"><br>
-    
-    <div class="large-9 medium-9 columns">
-    <div class="row">
-    	<div class="large-12 columns">
-    <table id="example" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                 <th>id_detalle</th>
-                 <th>cliente</th>
-                 <th>fecha</th>
-                 <th>comida</th>
-                 <th>alimento</th>
-                 <th>cantidad</th>
-                 <th>Calorias</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>  
-	</table>
-    	<div id="footerCallback"></div>
+        <div class="row">
+            <div class="large-12 medium-12 columns">
+                <table id="example" class="display">
+                    <thead>
+                        <tr>
+                             <th>id_detalle</th>
+                             <th>Cliente</th>
+                             <th>Fecha</th>
+                             <th>Comida</th>
+                             <th>Alimento</th>
+                             <th>Porción</th>
+                             <th>Calorias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>  
+            	</table>
+            	<div id="footerCallback"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 medium-12 columns">
+                <input class="button right" type="button" id="delete" value="Eliminar Alimento">
+            </div>
         </div>
     </div>
 </div>

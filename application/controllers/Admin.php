@@ -8,7 +8,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/head_view');
 		$this->load->view('admin/baner_view');
 		$this->load->view('admin/topbar_view');
-		$this->load->view('admin/sidebar_view');
+		/*$this->load->view('admin/sidebar_view');*/
 		$this->load->view('admin/principal_view');
 		$this->load->view('admin/foot_view');
 	}
@@ -19,7 +19,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/head_view');
 		$this->load->view('admin/baner_view');
 		$this->load->view('admin/topbar_view');
-		$this->load->view('admin/sidebar_view');
+		/*$this->load->view('admin/sidebar_view');*/
 		$this->load->view('admin/mant_usuarios_view',$data);
 		$this->load->view('admin/foot_view');
 	}

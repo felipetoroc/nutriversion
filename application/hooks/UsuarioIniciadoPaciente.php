@@ -32,8 +32,8 @@ class UsuarioIniciadoPaciente
 			$this->urlcorrecta = 'clientepro';
 		}
 		if ($tipo_usuario == '3') {
-			$this->controlador_no = ['welcome','login','cliente','clientepro','registro'];
-			$this->urlcorrecta = 'admin';
+			$this->controlador_no = ['welcome','login','cliente','registro'];
+			$this->urlcorrecta = 'clientepro';
 		}
 		if($session && in_array($class,$this->controlador_no))
 		{

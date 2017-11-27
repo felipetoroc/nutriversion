@@ -41,7 +41,7 @@ class Cliente extends CI_Controller {
 		$this->load->view('cliente/head_view');
 		$this->load->view('cliente/baner_view');
 		$this->load->view('cliente/topbar_view');
-		$this->load->view('cliente/sidebar_view');
+		/*$this->load->view('cliente/sidebar_view');*/
 		$this->load->view('cliente/principal_view');
 		$this->load->view('cliente/foot_view');
 	}
@@ -52,17 +52,17 @@ class Cliente extends CI_Controller {
 		$this->load->view('cliente/head_view');
 		$this->load->view('cliente/baner_view');
 		$this->load->view('cliente/topbar_view');
-		$this->load->view('cliente/sidebar_view');
+		/*$this->load->view('cliente/sidebar_view');*/
 		if ($resultado->num > 0 &&  $valida_estado->lala == 0 ){
 			$data['estado_fisico'] = $this->cliente_model->recuperar_estado();
 			$this->load->view('cliente/estado_fisico_view',$data);
 		}else{
-			/*if ($this->session->flashdata('autorizado_por')){*/
+			if ($this->session->flashdata('autorizado_por')){
 				$data['objetivos'] = $this->cliente_model->getObjetivos();
 				$this->load->view('cliente/primer_inicio_view',$data);
-			/*}else{
+			}else{
 				$this->load->view('cliente/autorizacion_view');
-			}*/
+			}
 		}
 		$this->load->view('cliente/foot_view');
 	}
@@ -91,7 +91,7 @@ class Cliente extends CI_Controller {
 		$this->load->view('cliente/head_view');
 		$this->load->view('cliente/baner_view');
 		$this->load->view('cliente/topbar_view');
-		$this->load->view('cliente/sidebar_view');
+		/*$this->load->view('cliente/sidebar_view');*/
 		$this->load->view('cliente/Contador_de_calorias_view');
 		$this->load->view('cliente/foot_view');
     }
@@ -105,7 +105,7 @@ class Cliente extends CI_Controller {
 		$this->load->view('cliente/head_view');
 		$this->load->view('cliente/baner_view');
 		$this->load->view('cliente/topbar_view');
-		$this->load->view('cliente/sidebar_view');
+		/*$this->load->view('cliente/sidebar_view');*/
 		$this->load->view('cliente/Contador_calorias_cliente_view',$data);
 		$this->load->view('cliente/foot_view');
     }
@@ -165,7 +165,7 @@ class Cliente extends CI_Controller {
         $this->load->view('cliente/head_view');
         $this->load->view('cliente/baner_view');
         $this->load->view('cliente/topbar_view');
-        $this->load->view('cliente/sidebar_view');
+        /*$this->load->view('cliente/sidebar_view');*/
         $this->load->view('cliente/misDietas_view',$data);
         $this->load->view('cliente/foot_view');
     }
@@ -204,7 +204,7 @@ class Cliente extends CI_Controller {
     	$this->load->view('cliente/head_view');
         $this->load->view('cliente/baner_view');
         $this->load->view('cliente/topbar_view');
-        $this->load->view('cliente/sidebar_view');
+        /*$this->load->view('cliente/sidebar_view');*/
         $this->load->view('cliente/editar_datos_usuario',$data);
         $this->load->view('cliente/foot_view');
     }

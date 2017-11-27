@@ -6,9 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Nutrilife | Bienvenido Administrador</title>
-	<link rel="stylesheet" href="<?php echo base_url() ?>css/foundation.css" />
+	<title>NutriVersión | Bienvenido Paciente</title>
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/foundation.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="<?php echo base_url() ?>js/Chart.js"></script>
     <script src="<?php echo base_url() ?>js/jquery-1.11.3.js"></script>
@@ -58,3 +58,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
+<div class="row">
