@@ -15,7 +15,7 @@ $(document).ready(function(){
               .done(function( data ) {
                 $.post( "http://localhost/nutriversion/index.php/clientepro/getCaloriasDieta", {id_dieta:id_dieta})
                   .done(function( data ) {
-                        $("#calorias").html(data);
+                        $("#calorias").html(Math.round(data));
                   });
             });
         }else{

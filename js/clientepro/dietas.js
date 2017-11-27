@@ -92,4 +92,10 @@ $(document).ready(function(){
 			$('#myModal').foundation('reveal', 'open');
         }
     });
+    $("#btnDesAsignarDietaA").on('click',function(){
+    	$.post( "http://localhost/nutriversion/index.php/clientepro/cancelarAsignacion")
+    		.done(function(data){
+				$( location ).attr("href", data);
+			});
+    });
 });

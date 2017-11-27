@@ -78,6 +78,6 @@
 </div>
 <div id="myModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">Advertencia!</h2>
-    <p>Debe seleccionar un cliente primero para poder asignarle una nueva dieta.</p>
+    <p>Debe seleccionar un cliente que tenga su estado físico ingresado</p>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

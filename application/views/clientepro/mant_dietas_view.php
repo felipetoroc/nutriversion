@@ -12,6 +12,7 @@
     if ($this->session->userdata('id_cliente')){
     ?>
     <input class="button tiny" type="button" name="asignardieta" id="btnAsignarDietaA" value="Asignar Dieta a <?=strtoupper($this->session->userdata('nombre_cliente')." ".$this->session->userdata('apellido_cliente'))?>">
+    <input class="button tiny alert" type="button" id="btnDesAsignarDietaA" value="Cancelar Asignación">
     <?php } ?>
     <table id="table_dietas" class="table">
         <thead>

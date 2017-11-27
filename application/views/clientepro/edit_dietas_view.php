@@ -1,16 +1,43 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/clientepro/dietas_editar.js"></script>
 
-<div class="large-12 columns">
+<div class="large-12 medium-12 columns">
     <div class="row">
-        <a class="button tiny" href="<?=base_url()?>index.php/clientepro/dietas">OK</a>
+        <div class="large-6 medium-6 columns">
+            <a class="button" href="<?=base_url()?>index.php/clientepro/dietas">OK</a>
+        </div>
+        <div class="large-6 medium-6 columns">
+        <label style="display:none" id="id_dieta"><?php foreach($datos_dieta_cabecera as $row_dieta_cabecera){echo $row_dieta_cabecera['id_dieta'];}?></label>
+            Nombre de la dieta:
+            <input id="nombre_dieta" value="<?php foreach($datos_dieta_cabecera as $row_dieta_cabecera){echo $row_dieta_cabecera['nombre'];}?>">
+            <label id="mensajeValidacion" class="w3-text-red"></label>
+        </div>
         <!--<input class="button tiny" type="button" name="confirmar" id="confirmar" value="Confirmar Dieta">-->
     </div>
     <div class="row">
         <div class="large-6 medium-6 columns">
-            <label style="display:none" id="id_dieta"><?php foreach($datos_dieta_cabecera as $row_dieta_cabecera){echo $row_dieta_cabecera['id_dieta'];}?></label>
-            Nombre de la dieta:
-            <input id="nombre_dieta" value="<?php foreach($datos_dieta_cabecera as $row_dieta_cabecera){echo $row_dieta_cabecera['nombre'];}?>">
-            <label id="mensajeValidacion" class="w3-text-red"></label>
+            <?php if($this->session->userdata('id_cliente')){
+            ?>
+             <div class="row">
+                <div class="large-6 medium-6 columns">
+                    <h3>Consumo Calórico Recomendado: </h3>
+                </div>
+                <div class="large-6 medium-6 columns">
+                    <h3 style="color:blue"><?=round($this->session->userdata("ccd"))?></h3>
+                </div>
+            </div>
+            <?php
+            }
+            ?>
+            <div class="row">
+                <div class="large-6 medium-6 columns">
+                    <h3>Calorías de la Dieta: </h3>
+                </div>
+                <div class="large-6 medium-6 columns">
+                    <h3 style="color:green" id="calorias"><?=round($calorias)?></h3>
+                </div>
+            </div>
+        </div>
+        <div class="large-6 medium-6 columns">
             <table>
                 <thead>
                 <tr>
@@ -39,10 +66,6 @@
                     ?>
                 </tbody>
             </table>
-        </div>
-        <div class="large-6 medium-6 columns">
-            <h1 id="calorias"><?=$calorias?></h1>
-            <h1><?=$this->session->userdata("ccd")?></h1>
         </div>
     </div>
 </div>
