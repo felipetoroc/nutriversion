@@ -16,7 +16,7 @@ function subirImagen(){
             </div>
             <div class="row">
                 <div class="small-12 large-12 columns">
-        	       <input type="button" Value="CARGAR NUEVA IMAGEN" name="mostrar" id="mostrar" class="button postfix" onclick="subirImagen()">
+        	       <input type="button" Value="Subir Imagen" name="mostrar" id="mostrar" class="button postfix" onclick="subirImagen()">
                 </div>
                 <div id="cargarImagen" class="small-12 large-12 columns" style="display: none">
         			<form action="<?=base_url()?>index.php/cliente/actualizarUrlC" method="POST" enctype = "multipart/form-data">
@@ -26,8 +26,9 @@ function subirImagen(){
                 </div>  
             </div>
         </div>
-        <div class="small-12 medium-9 large-9 columns">
             <h3>Datos de la cuenta:</h3>
+            <a href="<?=base_url()?>index.php/cliente/datosUsuario">Actualizar Datos</a>
+        <div class="small-12 medium-5 large-5 columns">
             <table class="tabla">
 				<tr>
                     <td>Rut</td><td><?=$this->session->userdata("rut")?></td>
@@ -37,6 +38,19 @@ function subirImagen(){
                 </tr>
                 <tr>
                     <td>Email</td><td><?=$this->session->userdata("email")?></td>
+                </tr>
+                <tr>
+                    <td>Nacimiento</td><td><?=$this->session->userdata("fechaNac")?></td>
+                </tr>
+            </table>
+        </div>
+        <div class="small-12 medium-4 large-4 columns">
+            <table class="tabla">
+                <tr>
+                    <td>Comuna</td><td><?=$this->session->userdata("comuna_id")?></td>
+                </tr>
+                <tr>
+                    <td>Dirección</td><td><?=$this->session->userdata("direccion")?></td>
                 </tr>
             </table>
         </div>

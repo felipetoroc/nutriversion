@@ -195,5 +195,60 @@ class Cliente extends CI_Controller {
 			redirect("cliente/estado");	
 		}
     }
+
+    function datosUsuario(){
+    	$this->load->model('comuna_model');
+		$data = array(
+			'regiones' => $this->comuna_model->obtener_region()
+		);
+    	$this->load->view('cliente/head_view');
+        $this->load->view('cliente/baner_view');
+        $this->load->view('cliente/topbar_view');
+        $this->load->view('cliente/sidebar_view');
+        $this->load->view('cliente/editar_datos_usuario',$data);
+        $this->load->view('cliente/foot_view');
+    }
+
+    function editUser(){
+    	$nombre = strtoupper($this->input->post('nombre'));
+        $apellidop = strtoupper($this->input->post('apellidop'));
+        $apellidom = strtoupper($this->input->post('apellidom'));
+        $rut = $this->session->userdata('rut');
+		$fechaNac = $this->input->post('fechaNac');
+		$email = $this->input->post('mail');
+		if ($this->input->post('id_comuna') <> ""){
+			$id_comuna = $this->input->post('id_comuna');
+		}else{
+			$id_comuna = $this->session->userdata('comuna_id');
+		}
+		$direccion = strtoupper($this->input->post('direccion'));
+		$telefono = $this->input->post('telefono');
+        $this->load->model('cliente/Cliente_model');
+        $resultado = $this->Cliente_model->editUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion);
+		if($resultado == 1)
+		{
+            $this->session->set_userdata('nombre',$nombre);
+            $this->session->set_userdata('apellido',$apellidop." ".$apellidom);
+            $this->session->set_userdata('fechaNac',$fechaNac);
+            $this->session->set_userdata('comuna_id',$id_comuna);
+            $this->session->set_userdata('email',$email);
+            $this->session->set_userdata('telefono',$telefono);
+            $this->session->set_userdata('direccion',$direccion);	
+			redirect('cliente');
+		}else{
+			if($resultado == 0){
+				$this->session->set_flashdata('error','No se pudo actualizar');
+		    	$this->index();
+			}
+        }
+    }
+    public function provincia_data(){
+		$this->load->model('comuna_model');
+		echo json_encode($this->comuna_model->obtener_provincia());
+	}
+	public function comuna_data(){
+		$this->load->model('comuna_model');
+		echo json_encode($this->comuna_model->obtener_comuna());
+	}
 }
 ?>

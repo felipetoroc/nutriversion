@@ -286,5 +286,23 @@ class Cliente_model extends CI_Model {
     	}
 
     }
+    function editUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion){
+        $data = array(
+            'cliente_nombre' => $this->db->escape_str($nombre),
+            'cliente_apellido' => $this->db->escape_str($apellidop." ".$apellidom),
+            'cliente_email' => $this->db->escape_str($email),
+            'cliente_telefono' => $this->db->escape_str($telefono),
+            'cliente_comuna_id' => $id_comuna,
+            'cliente_direccion' => $this->db->escape_str($direccion),
+            'cliente_fecha_nacimiento' => $fechaNac,
+        );
+        $this->db->where('cliente_rut', $rut);
+		$resultado = $this->db->update('cliente', $data); 
+		if ($resultado){
+			return 1;
+		}else{
+			return 0;
+		}
+    }
 }
 ?>
