@@ -1,7 +1,7 @@
 <div class="large-9 medium-9 columns">
     <div class="row">
         <div class="large-12 medium-12 columns">
-                <h3>Datos Fisicos</h3>
+                <h3>Datos físicos</h3>
             
         </div>
     </div>
@@ -21,18 +21,18 @@
              <LABEL>Cadera (cms)</LABEL>
                 <input type="text" name="Cadera" id="Cadera" minlength="2" maxlength="3" required>
                  
-                <LABEL>Factor de Actividad: </LABEL>
+                <LABEL>Factor de actividad: </LABEL>
                 <select name="factor" required>
                  <option value="">Seleccione</option>
                  <option value="1.2">Sedentario</option>
-                 <option value="1.375">Actividad Ligera</option>
-                 <option value="1.55">Actividad Moderada</option>
-                 <option value="1.725">Actividad Intensa</option>
-                 <option value="1.9">Actividad Muy Intensa</option>
+                 <option value="1.375">Actividad ligera</option>
+                 <option value="1.55">Actividad moderada</option>
+                 <option value="1.725">Actividad intensa</option>
+                 <option value="1.9">Actividad muy intensa</option>
                  </select>
                  <h4>Objetivo</h4>
                 <select id="objetivo" name="objetivo" required>
-                 <option value="">Seleccione Objetivo...</option>
+                 <option value="">Seleccione objetivo...</option>
                  <?php foreach ($objetivos as $objetivo){
                     echo "<option value='".$objetivo["id_objetivo"]."'>".$objetivo["descr_objetivo"]."</option>";
                  }
