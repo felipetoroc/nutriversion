@@ -86,7 +86,13 @@ class Cliente_model extends CI_Model {
 		$Masacorporalmagra2.",".
 		$tmb.",".
 		$ccd.")";
-        $result =$this->db->query($queryInsert);
+        $this->db->query($queryInsert);
+        $queryIdEstado = $this->db->query("select id from estado_fisico where id_cliente = $id_cliente and fecha_registro = (select max(fecha_registro) from estado_fisico where id_cliente = $id_cliente)");
+        $idEstado = $queryIdEstado->row();
+        $queryInsertObj = "insert into objetivo_estado_fisico
+        (id_objetivo,id_estado_fisico,fecha) values
+        ($objetivo,$idEstado->id,now())";
+        $result = $this->db->query($queryInsertObj);
 		return  $result;
 	}
 	//***************************contador de calorias *****************************************************

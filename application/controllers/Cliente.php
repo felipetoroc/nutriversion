@@ -178,9 +178,12 @@ class Cliente extends CI_Controller {
 				$this->load->model('login/login_model');
                 $row = $this->login_model->valida_usuario($rut,$pass);
 				if(isset($row)){
-	                if($row->cliente_tipo == '2'){
+	                if($row->cliente_tipo == '2' | $row->cliente_tipo == '3'){
 	                	$this->session->set_flashdata('autorizado_por',$row->cliente_rut);
 	                	redirect("cliente/estado");
+	                }else{
+	                	$this->session->set_flashdata('error', 'Datos Incorrectos');
+						redirect("cliente/estado");
 	                }
 				}else{
 					$this->session->set_flashdata('error', 'Datos Incorrectos');

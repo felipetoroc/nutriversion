@@ -42,7 +42,6 @@ $(document).ready(function() {
                             }else{
                                 $("#"+value.id_comida+"-"+value.id_categoria).html(value.porciones);
                             }
-
                         });
                     }
                 });

@@ -76,12 +76,11 @@
         });
         $('#region').on('change', function() {
             $('#provincia option').remove();
-            $('#cbcomuna option').remove();
+            $('#id_comuna option').remove();
             var region_id = $('#region').val();
             $.post("http://localhost/nutriversion/index.php/registro/provincia_data", {
                 region_id: region_id
             }, function(data) {
-                $('#provincia').append("<option value='0'>Seleccione...</option>");
                 $.each(data, function(index, value) {
                     $('#provincia').append("<option value='" + value.PROVINCIA_ID + "'>" + value.PROVINCIA_NOMBRE + "</option>");
                 });
@@ -93,7 +92,6 @@
             $.post("http://localhost/nutriversion/index.php/registro/comuna_data", {
                 provincia_id: provincia_id
             }, function(data) {
-                $('#id_comuna').append("<option value='' required>Seleccione...</option>");
                 $.each(data, function(index, value) {
                     $('#id_comuna').append("<option value='" + value.COMUNA_ID + "'>" + value.COMUNA_NOMBRE + "</option>");
                 });

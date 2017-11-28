@@ -9,13 +9,16 @@ class Usuarios_model extends CI_Model {
     }
 	
 	function getUsers(){
-		$query = $this->db->query("SELECT * FROM cliente left join comuna on cliente_comuna_id = comuna_id");
+		$query = $this->db->query("SELECT * FROM cliente 
+			left join comuna on cliente_comuna_id = comuna_id
+			inner join tipo_cliente on cliente.cliente_tipo = tipo_cliente.id_tipo_cliente");
 		$tabla = "";
 		
 		foreach($query->result_array() as $row )
 		{
 			$tabla.='{
 			"cliente_id":"'.$row['cliente_id'].'",
+			"cliente_rut":"'.$row['cliente_rut'].'",
 			"cliente_nombre":"'.$row['cliente_nombre'].'",
 			"cliente_apellido":"'.$row['cliente_apellido'].'",
 			"cliente_fecha_nacimiento":"'.$row['cliente_fecha_nacimiento'].'",
@@ -26,7 +29,8 @@ class Usuarios_model extends CI_Model {
 			"cliente_email":"'.$row['cliente_email'].'",
 			"cliente_celular":"'.$row['cliente_celular'].'",
 			"cliente_telefono":"'.$row['cliente_telefono'].'",
-			"cliente_tipo":"'.$row['cliente_tipo'].'"
+			"cliente_tipo":"'.$row['cliente_tipo'].'",
+			"tipo_cliente_descl":"'.$row['tipo_cliente_descl'].'"
 			},';		
 		}
 		$tabla = substr($tabla,0, strlen($tabla) - 1);
@@ -71,6 +75,7 @@ class Usuarios_model extends CI_Model {
 		'$tipo')");
 		return $query;
 	}
+
 	function edit(){
 		$id = $this->input->post('id');
 		$nombre = $this->input->post('nombre');
@@ -98,10 +103,80 @@ class Usuarios_model extends CI_Model {
 		where cliente_id = '$id'");
 	}
 	
-	function delete(){
-	    $respuesta = "";
-		$query = $this->db->query("delete from cliente where cliente_id = ".$this->input->post('cliente_id'));
-		return $query;
+	function delete($id_cliente){
+		$query1 = $this->db->query("select count(*) as num from cliente_dieta where id_cliente = $id_cliente");
+		$res = $query1->row();
+		if ($res->num > 0){
+			return 0;
+		}else{
+			$this->db->flush_cache();
+			$this->db->where('id_cliente', $id_cliente);
+			$this->db->delete('sesion');
+			$this->db->flush_cache();
+			$this->db->where('cliente_id', $id_cliente);
+			return $this->db->delete('cliente');
+		}
 	}
+
+	function newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo,$tipo,$sucursal){
+        $rutsinguion = str_replace('-','',$rut);
+        $rutsinpuntos = str_replace('.','',$rutsinguion);
+        $query = $this->db->query("select validate_rut(".$this->db->escape($rut).") as esrut from dual");
+        $query2 = $this->db->query("select valida_mail(".$this->db->escape($email).",".$this->db->escape($rutsinpuntos).") as existe from dual");
+        $resultado = $query->row();
+        $resultado2 = $query2->row();
+        if ($resultado->esrut == 0) {
+            return 1;
+        }else{
+            if($resultado2->existe > 0){
+                return 2;
+            }else{
+                $data = array(
+                    'cliente_nombre' => $this->db->escape_str($nombre),
+                    'cliente_apellido' => $this->db->escape_str($apellidop." ".$apellidom),
+                    'cliente_rut' => $this->db->escape_str($rutsinpuntos),
+                    'cliente_email' => $this->db->escape_str($email),
+                    'cliente_telefono' => $this->db->escape_str($telefono),
+                    'cliente_comuna_id' => $id_comuna,
+                    'cliente_direccion' => $this->db->escape_str($direccion),
+                    'cliente_fecha_nacimiento' => $fechaNac,
+                    'cliente_sexo' => $sexo,
+                    'cliente_tipo' => $tipo,
+                    'cliente_imagen_url' => 'img/usuario.jpg'
+                );
+                $this->db->insert('cliente', $data);    
+                return 0;
+            }
+        }
+    }
+
+    function editUser($id_cliente,$nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo,$tipo,$sucursal){
+        $data = array(
+            'cliente_nombre' => $this->db->escape_str($nombre),
+            'cliente_apellido' => $this->db->escape_str($apellidop." ".$apellidom),
+            'cliente_telefono' => $this->db->escape_str($telefono),
+            'cliente_comuna_id' => $id_comuna,
+            'cliente_direccion' => $this->db->escape_str($direccion),
+            'cliente_fecha_nacimiento' => $fechaNac,
+            'cliente_sexo' => $sexo,
+            'cliente_tipo' => $tipo,
+            'cliente_imagen_url' => 'img/usuario.jpg'
+        );
+        $this->db->where('cliente_id', $id_cliente);
+		return $this->db->update('cliente', $data);
+    
+    }
+
+    function getUsersById($id_usuario){
+    	$id = $this->db->escape($id_usuario);
+    	$query = $this->db->query("SELECT * FROM cliente 
+			left join comuna on cliente_comuna_id = comuna_id
+			inner join tipo_cliente on cliente.cliente_tipo = tipo_cliente.id_tipo_cliente
+			left join cliente_dieta on cliente_dieta.id_cliente = cliente.cliente_id
+			where cliente_id = $id
+			limit 1");
+    	return $query->row();
+
+    }
 }
 ?>

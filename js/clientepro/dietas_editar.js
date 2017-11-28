@@ -11,13 +11,11 @@ $(document).ready(function(){
         var nombre = $('#nombre_dieta').val();
         if($.isNumeric(valor) & valor >= 0 & valor <= 10){
             $("#mensajeValidacion").html("");
-            $.post( "http://localhost/nutriversion/index.php/clientepro/modificar_dieta", {id_dieta:id_dieta,id_comida:id_comida,id_categoria:id_categoria,porcion:valor,nombre_dieta:nombre})
-              .done(function( data ) {
-                $.post( "http://localhost/nutriversion/index.php/clientepro/getCaloriasDieta", {id_dieta:id_dieta})
+            $.post( "http://localhost/nutriversion/index.php/clientepro/modificar_dieta", {id_dieta:id_dieta,id_comida:id_comida,id_categoria:id_categoria,porcion:valor,nombre_dieta:nombre});
+            $.post( "http://localhost/nutriversion/index.php/clientepro/getCaloriasDieta", {id_dieta:id_dieta})
                   .done(function( data ) {
                         $("#calorias").html(Math.round(data));
                   });
-            });
         }else{
             $("#mensajeValidacion").html("Debe ingresar ser un valor numérico.");
         }

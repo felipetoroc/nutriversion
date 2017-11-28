@@ -13,8 +13,7 @@ $(document).ready(function(){
 			{ data: "fecha_creacion" },
             { data: "fecha_modificacion" },
             { 
-            	data: "estado",
-            	visible: false
+            	data: "estado"
             },
             { data: "creado_por" }
 		]
