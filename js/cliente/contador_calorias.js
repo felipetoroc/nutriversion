@@ -6,7 +6,7 @@
 
 $(document).ready( function leer_registos(){			   
 
-	var table = $('#example').DataTable({"ajax": "http://localhost/nutriversion/index.php/Cliente/contador_data",					
+	var table = $('#example').DataTable({"ajax": window.location.origin+"/nutriversion/index.php/Cliente/contador_data",					
 
 		 "columns": [
 
@@ -86,7 +86,7 @@ $(document).ready( function leer_registos(){
 
 		
 
-		$.post( "http://localhost/nutriversion/index.php/cliente/contador_contador_cabecera").done();
+		$.post( window.location.origin+"/nutriversion/index.php/cliente/contador_contador_cabecera").done();
 
 		
 
@@ -164,7 +164,7 @@ $(document).ready( function leer_registos(){
 
 			$.ajax({
 
-				url:"http://localhost/nutriversion/index.php/cliente/contador_detalle",
+				url:window.location.origin+"/nutriversion/index.php/cliente/contador_detalle",
 
 				type:'POST',
 

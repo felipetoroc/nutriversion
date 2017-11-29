@@ -6,7 +6,7 @@ $(document).ready( function leer_registos(){
 
 	var table = $('#example').DataTable({				
 
-		 "ajax": "http://localhost/nutriversion/index.php/dietas/dieta_cabecera_data",					
+		 "ajax": window.location.origin+"/nutriversion/index.php/dietas/dieta_cabecera_data",					
 
 		 "columns": [
 

@@ -20,7 +20,7 @@ class Login extends CI_Controller {
 				$pass = $this->input->post("pw");
 				$this->load->model('login/login_model');
                 $row = $this->login_model->valida_usuario($rut,$pass);
-				if(isset($row)){
+				if(isset($row->cliente_id)){
 					$this->session->set_userdata('id',$row->cliente_id);
 	                $this->session->set_userdata('rut',$row->cliente_rut);
 	                $this->session->set_userdata('nombre',$row->cliente_nombre);
@@ -38,20 +38,29 @@ class Login extends CI_Controller {
 	                $this->session->set_userdata('provincia_nombre',$row->PROVINCIA_NOMBRE);
 		            redirect('welcome');
 				}else{
-					$this->session->set_flashdata('error', 'Rut Incorrecto.');
-					redirect("Login/index");
+					if($row == 0){
+						$this->session->set_flashdata('error', 'El rut ingresado no existe.');
+						$this->index();
+					}else{
+						if($row == 1){
+							$this->session->set_flashdata('error', 'Contraseña incorrecta. Intentelo Nuevamente.');
+							$this->index();
+						}
+					}
                 }
 			}else{
 				$this->session->set_flashdata('error', 'Falta llenar el campo contraseña.');
-				redirect("Login/index");	
+				$this->index();	
 			}
 		}else{
 			$this->session->set_flashdata('error', 'Falta llenar el campo rut.');
-			redirect("Login/index");	
+			$this->index();	
 		}
 	}
 	public function cerrar(){
 		if(null !== $this->session->userdata("rut")){
+			$this->load->model('login/login_model');
+            $this->login_model->cerrarSesion($this->session->userdata("id"));
 			$this->session->sess_destroy();
 			redirect("welcome");
 		}

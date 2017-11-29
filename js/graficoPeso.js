@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$.ajax({
-		url:"http://localhost/nutriversion/index.php/Cliente/Ver_grafico_peso_data",
+		url:window.location.origin+"/nutriversion/index.php/Cliente/Ver_grafico_peso_data",
 		method:"GET",
 		success: function(data){
 			console.log(data);

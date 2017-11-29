@@ -1,7 +1,7 @@
 // JavaScript Document
 $(document).ready(function() {
 	var table = $('#table_id').DataTable({
-		"sAjaxSource": "http://localhost/nutriversion/index.php/admin/usuarios_data",
+		"sAjaxSource": window.location.origin+"/nutriversion/index.php/admin/usuarios_data",
 		"columns": [{
 			"data": "cliente_id",
 			visible: false
@@ -77,7 +77,7 @@ $(document).ready(function() {
 	$('#eliminar').click(function() {
 		var cliente_id = table.cell('.selected', 0).data();
 		if (cliente_id != null) {
-			$.post("http://localhost/nutriversion/index.php/admin/eliminar_usuario", {
+			$.post(window.location.origin+"/nutriversion/index.php/admin/eliminar_usuario", {
 				cliente_id: cliente_id
 			}).done(function(data) {
 				if(data == 0){
@@ -101,7 +101,7 @@ $(document).ready(function() {
 	$('#editar').on('click', function() {
 		var cliente_id = table.cell('.selected', 0).data();
 		if (cliente_id != null) {
-			$( location ).attr("href", "http://localhost/nutriversion/index.php/admin/newEditUsuario/"+cliente_id);
+			$( location ).attr("href", window.location.origin+"/nutriversion/index.php/admin/newEditUsuario/"+cliente_id);
 		}else{
 			$("#tituloModal").html("Advertencia!");
 			$("#mensajeModal").html("Debe seleccionar un usuario de la lista.");

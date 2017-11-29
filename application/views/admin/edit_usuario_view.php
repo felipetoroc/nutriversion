@@ -124,7 +124,7 @@
         $('#provincia option').remove();
         $('#id_comuna option').remove();
         var region_id = $('#region').val();
-        $.post("http://localhost/nutriversion/index.php/admin/provincia_data", {
+        $.post(window.location.origin+"/nutriversion/index.php/admin/provincia_data", {
             region_id: region_id
         }, function(data) {
             $.each(data, function(index, value) {
@@ -135,7 +135,7 @@
     $('#provincia').on('change', function() {
         $('#id_comuna option').remove();
         var provincia_id = $('#provincia').val();
-        $.post("http://localhost/nutriversion/index.php/admin/comuna_data", {
+        $.post(window.location.origin+"/nutriversion/index.php/admin/comuna_data", {
             provincia_id: provincia_id
         }, function(data) {
             $.each(data, function(index, value) {

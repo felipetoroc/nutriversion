@@ -19,14 +19,15 @@ class Registro extends CI_Controller {
 	}
 	public function registrar()
 	{
-		$nombre = strtoupper($this->input->post('nombre'));
-        $apellidop = strtoupper($this->input->post('apellidop'));
-        $apellidom = strtoupper($this->input->post('apellidom'));
+		$fechainput = DateTime::createFromFormat('d/m/Y', $this->input->post('fechaNac'))->format('Y/m/d');
+		$nombre = strtr(strtoupper($this->input->post('nombre')),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+        $apellidop = strtr(strtoupper($this->input->post('apellidop')),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+        $apellidom = strtr(strtoupper($this->input->post('apellidom')),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
         $rut = $this->input->post('rut');
-		$fechaNac = $this->input->post('fechaNac');
+		$fechaNac = $fechainput;
 		$email = $this->input->post('mail');
 		$id_comuna = $this->input->post('id_comuna');
-		$direccion = strtoupper($this->input->post('direccion'));
+		$direccion = strtr(strtoupper($this->input->post('direccion')),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
 		$telefono = $this->input->post('telefono');
 		$sexo = $this->input->post('sexo');
         $this->load->model('login/reg_model');

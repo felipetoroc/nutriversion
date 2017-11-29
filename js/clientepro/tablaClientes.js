@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     var tabla = $('#tabla').DataTable({
         dom: 'frt',
-        sAjaxSource: "http://localhost/nutriversion/index.php/clientepro/getClientes",
+        sAjaxSource: window.location.origin+"/nutriversion/index.php/clientepro/getClientes",
         responsive : true,
         columns: [
             { data: "cliente_id" , visible : false},
@@ -18,7 +18,7 @@ $(document).ready(function() {
         else {
             tabla.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-            $.post( "http://localhost/nutriversion/index.php/clientepro/getClientebyid", {id_cliente:tabla.cell('.selected',0).data()})
+            $.post( window.location.origin+"/nutriversion/index.php/clientepro/getClientebyid", {id_cliente:tabla.cell('.selected',0).data()})
                 .done(function( data ) {
                     console.log(data);
                     var obj = $.parseJSON(data);
@@ -53,7 +53,7 @@ $(document).ready(function() {
         var apellido_cliente = $("#apellido_cliente").val();
         var ccd = $("#cons_cal_diario").html();
         if ($("#cons_cal_diario").html() != ""){
-            $.post( "http://localhost/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente,ccd:ccd})
+            $.post( window.location.origin+"/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente,ccd:ccd})
                 .done(function(data){
                     $( location ).attr("href", data);
                 });

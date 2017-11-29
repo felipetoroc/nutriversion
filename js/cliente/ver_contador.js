@@ -8,7 +8,7 @@
 
 $(document).ready( function leer_registos(){			   
 
-	var table = $('#example').DataTable({"ajax": "http://localhost/nutriversion/index.php/Cliente/ver_contador_data",					
+	var table = $('#example').DataTable({"ajax": window.location.origin+"/nutriversion/index.php/Cliente/ver_contador_data",					
 
 		 "columns": [
 
@@ -72,7 +72,7 @@ $(document).ready( function leer_registos(){
 
 		if (id_detalle != null){
 
-		$.post("http://localhost/nutriversion/index.php/Cliente/eliminar_detalle_contador", { id_detalle: id_detalle})
+		$.post(window.location.origin+"/nutriversion/index.php/Cliente/eliminar_detalle_contador", { id_detalle: id_detalle})
 
 		  .done(function( data ) {
 
@@ -104,7 +104,7 @@ $(document).ready( function leer_registos(){
 
 		
 
-		$.post("http://localhost/nutriversion/index.php/Cliente/asignar_fecha_detalle", { fecha_detalle: fecha_detalle})
+		$.post(window.location.origin+"/nutriversion/index.php/Cliente/asignar_fecha_detalle", { fecha_detalle: fecha_detalle})
 
 		 .done(function( data ) {
 

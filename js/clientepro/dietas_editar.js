@@ -11,8 +11,8 @@ $(document).ready(function(){
         var nombre = $('#nombre_dieta').val();
         if($.isNumeric(valor) & valor >= 0 & valor <= 10){
             $("#mensajeValidacion").html("");
-            $.post( "http://localhost/nutriversion/index.php/clientepro/modificar_dieta", {id_dieta:id_dieta,id_comida:id_comida,id_categoria:id_categoria,porcion:valor,nombre_dieta:nombre});
-            $.post( "http://localhost/nutriversion/index.php/clientepro/getCaloriasDieta", {id_dieta:id_dieta})
+            $.post( window.location.origin+"/nutriversion/index.php/clientepro/modificar_dieta", {id_dieta:id_dieta,id_comida:id_comida,id_categoria:id_categoria,porcion:valor,nombre_dieta:nombre});
+            $.post( window.location.origin+"/nutriversion/index.php/clientepro/getCaloriasDieta", {id_dieta:id_dieta})
                   .done(function( data ) {
                         $("#calorias").html(Math.round(data));
                   });
@@ -25,7 +25,7 @@ $(document).ready(function(){
         var id_dieta = $('#id_dieta').text();
         var nombre = $('#nombre_dieta').val();
         if (nombre.length > 3){
-            $.post( "http://localhost/nutriversion/index.php/clientepro/modificar_dieta", {id_dieta:id_dieta,nombre_dieta:nombre})
+            $.post( window.location.origin+"/nutriversion/index.php/clientepro/modificar_dieta", {id_dieta:id_dieta,nombre_dieta:nombre})
 			  .done(function( data ) {
 				$( "#resultado" ).html(data);
 			});
@@ -34,7 +34,7 @@ $(document).ready(function(){
 
     $("#confirmar").on("click",function(){
         var id_dieta = $('#id_dieta').text();
-        $.post( "http://localhost/nutriversion/index.php/clientepro/confirmar_dieta", {id_dieta:id_dieta})
+        $.post( window.location.origin+"/nutriversion/index.php/clientepro/confirmar_dieta", {id_dieta:id_dieta})
 			  .done(function(data){
 				$("#resultado").html(data).show(500,function(){
 				    $("#resultado").delay(3000).hide(500);

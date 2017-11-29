@@ -36,22 +36,18 @@ class Login_model extends CI_Model
         $row = $query1->row();
 
         if (isset($row)) {
-
             $passBD = $row->resultado;
 
             if ($passBD === sha1($pass)) {
-
                 $usuario = $this->recuperar_id($rut);
+                $this->db->query("select fn_update_sesion('".$_SERVER['REMOTE_ADDR']."','local',".$usuario->cliente_id.",'inicio') from dual;");
                 return $usuario;
-
+            }else{
+                return 1;
             }
-
-        } else {
-
+        }else{
             return 0;
-
         }
-
     }
 
     function sumarInicio($id, $n_inicios)
@@ -115,6 +111,10 @@ class Login_model extends CI_Model
 
         }
 
+    }
+
+    function cerrarSesion($id_cliente){
+        $this->db->query("select fn_update_sesion('".$_SERVER['REMOTE_ADDR']."','local',".$id_cliente.",'cierre') from dual;");
     }
 
 }

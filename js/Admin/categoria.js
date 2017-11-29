@@ -2,11 +2,11 @@
 
 
 
-$(document).ready( function leer_registos(){			   
+$(document).ready( function leer_registos(){		   
 
 	var table = $('#example').DataTable({				
 
-		 "ajax": "http://localhost/nutriversion/index.php/Categoria_alimento/categoria_data",					
+		 "ajax": window.location.origin+"/nutriversion/index.php/Categoria_alimento/categoria_data",					
 
 		 "columns": [
 
@@ -114,7 +114,7 @@ $(document).ready( function leer_registos(){
 
 			$.ajax({
 
-				url:"http://localhost/nutriversion/index.php/categoria_alimento/create",
+				url:window.location.origin+"/nutriversion/index.php/categoria_alimento/create",
 
 				type:'POST',
 
@@ -176,7 +176,7 @@ $(document).ready( function leer_registos(){
 
 		if (categoria_id != null){
 
-		$.post("http://localhost/nutriversion/index.php/Categoria_alimento/eliminar_categoria", { categoria_id: categoria_id})
+		$.post(window.location.origin+"/nutriversion/index.php/Categoria_alimento/eliminar_categoria", { categoria_id: categoria_id})
 
 		  .done(function( data ) {
 
@@ -210,7 +210,7 @@ $(document).ready( function leer_registos(){
 
 			$.ajax({
 
-				url:"http://localhost/nutriversion/index.php/categoria_alimento/editar_categoria",
+				url:window.location.origin+"/nutriversion/index.php/categoria_alimento/editar_categoria",
 
 				type:'POST',
 

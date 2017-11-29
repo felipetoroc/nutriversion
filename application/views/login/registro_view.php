@@ -16,7 +16,7 @@
                 <label>Rut</label>
                 <input type="text" name="rut" minlength="8" maxlength="12" placeholder="11111111-1" required>
                 <label>Fecha Nacimiento</label>
-                <input type="text" name="fechaNac" id="datepicker" placeholder="1991/09/17" required>
+                <input type="text" name="fechaNac" id="datepicker" placeholder="17/09/1990" required>
                 <label>Email</label>
                 <input type="email" name="mail" placeholder="ejemplo@gmail.com" required>
                 <label>Telefono Contacto</label>
@@ -31,7 +31,7 @@
                     </select>
                     <span class="input-group-addon"></span>
                     <select name="provincia" id="provincia"></select>
-                    <select name="id_comuna" id="id_comuna"></select>
+                    <select name="id_comuna" id="id_comuna" required></select>
                 </div>
                 </select>
                 <label>Dirección</label>
@@ -45,40 +45,33 @@
         </div>
     </div>
     <script>
-        $(function(){
-            $("#datepicker").datepicker({
-                minDate: "-100Y", 
-                maxDate: "-5Y", 
-                changeYear: true
-            });
-        });
         $("#formRegistro").validate({
-             rules: {
-                  nombre: {
-                      noSpace: true,
-                      lettersonly: true
-                  },
-                  apellidop:{
+            rules: {
+                nombre: {
                     noSpace: true,
                     lettersonly: true
-                  },
-                  apellidom:{
+                },
+                apellidop:{
                     noSpace: true,
                     lettersonly: true
-                  },
-                  rut: {
+                },
+                    apellidom:{
+                    noSpace: true,
+                    lettersonly: true
+                },
+                    rut: {
                     noSpace:true
-                  },
-                  fechaNac:{
-                    date:true
-                  }
-               }
+                },
+                fechaNac:{
+                    dateUS:true
+                }
+            }
         });
         $('#region').on('change', function() {
             $('#provincia option').remove();
             $('#id_comuna option').remove();
             var region_id = $('#region').val();
-            $.post("http://localhost/nutriversion/index.php/registro/provincia_data", {
+            $.post(window.location.origin+"/nutriversion/index.php/registro/provincia_data", {
                 region_id: region_id
             }, function(data) {
                 $.each(data, function(index, value) {
@@ -89,7 +82,7 @@
         $('#provincia').on('change', function() {
             $('#id_comuna option').remove();
             var provincia_id = $('#provincia').val();
-            $.post("http://localhost/nutriversion/index.php/registro/comuna_data", {
+            $.post(window.location.origin+"/nutriversion/index.php/registro/comuna_data", {
                 provincia_id: provincia_id
             }, function(data) {
                 $.each(data, function(index, value) {

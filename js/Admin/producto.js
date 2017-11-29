@@ -8,7 +8,7 @@
 
 			var table =  $('#example').dataTable( {				
 
-				"ajax": "http://localhost/nutriversion/index.php/Categoria_alimento/producto_data",					
+				"ajax": window.location.origin+"/nutriversion/index.php/Categoria_alimento/producto_data",					
 
 					 "columns": [
 

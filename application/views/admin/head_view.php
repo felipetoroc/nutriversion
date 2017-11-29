@@ -38,9 +38,9 @@
 		            check = false;
 		        return this.optional(element) || check;
 		    },
-		    "Porfavor ingresar una fecha valida en el formato mm/dd/yyyy"
+		    "Porfavor ingresar una fecha valida en el formato dd/mm/yyyy"
 		);
-		 $.extend(jQuery.validator.messages, {
+		$.extend(jQuery.validator.messages, {
 			  required: "Este campo es obligatorio.",
 			  remote: "Por favor, rellena este campo.",
 			  email: "Por favor, escribe una dirección de correo válida",
