@@ -91,7 +91,7 @@ class Admin extends CI_Controller {
         $resultado = $this->usuarios_model->newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo,$tipo,$sucursal);
 		if($resultado == 0)
 		{
-			redirect('index.php/admin/usuarios');
+			redirect('admin/usuarios');
 		}else{
 			if($resultado == 1){
 			    $this->session->set_flashdata('error','El Rut ingresado no es válido');

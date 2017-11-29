@@ -14,7 +14,7 @@
     <div class="large-10 medium-8 small-12 columns">
         <div class="row">
             <div class="large-10 medium-12 small-12 columns">
-                <h3>Datos Cliente Seleccionado</h3>
+                <h3>Datos Paciente Seleccionado</h3>
             </div>
         </div>
         <div class="row panel">
@@ -78,6 +78,6 @@
 </div>
 <div id="myModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">Advertencia!</h2>
-    <p>Debe seleccionar un cliente que tenga su estado físico ingresado</p>
+    <p>Debe seleccionar un Paciente que tenga su estado físico ingresado</p>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
