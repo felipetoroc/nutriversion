@@ -21,22 +21,27 @@ class Login extends CI_Controller {
 				$this->load->model('login/login_model');
                 $row = $this->login_model->valida_usuario($rut,$pass);
 				if(isset($row->cliente_id)){
-					$this->session->set_userdata('id',$row->cliente_id);
-	                $this->session->set_userdata('rut',$row->cliente_rut);
-	                $this->session->set_userdata('nombre',$row->cliente_nombre);
-	                $this->session->set_userdata('apellido',$row->cliente_apellido);
-	                $this->session->set_userdata('fechaNac',$row->cliente_fecha_nacimiento);
-	                $this->session->set_userdata('comuna_id',$row->cliente_comuna_id);
-	                $this->session->set_userdata('email',$row->cliente_email);
-	                $this->session->set_userdata('telefono',$row->cliente_telefono);
-	                $this->session->set_userdata('direccion',$row->cliente_direccion);
-	                $this->session->set_userdata('imagen_url',$row->cliente_imagen_url);
-	                $this->session->set_userdata('tipo_usuario',$row->cliente_tipo);
-	                $this->session->set_userdata('sexo',$row->cliente_sexo);
-	                $this->session->set_userdata('comuna_nombre',$row->COMUNA_NOMBRE);
-	                $this->session->set_userdata('region_nombre',$row->REGION_NOMBRE);
-	                $this->session->set_userdata('provincia_nombre',$row->PROVINCIA_NOMBRE);
-		            redirect('welcome');
+					if($row->cliente_tipo == 4){
+						$this->session->set_flashdata('error','Este usuario fue eliminado. Contacte al administrador');
+						$this->index();
+					}else{
+						$this->session->set_userdata('id',$row->cliente_id);
+		                $this->session->set_userdata('rut',$row->cliente_rut);
+		                $this->session->set_userdata('nombre',$row->cliente_nombre);
+		                $this->session->set_userdata('apellido',$row->cliente_apellido);
+		                $this->session->set_userdata('fechaNac',$row->cliente_fecha_nacimiento);
+		                $this->session->set_userdata('comuna_id',$row->cliente_comuna_id);
+		                $this->session->set_userdata('email',$row->cliente_email);
+		                $this->session->set_userdata('telefono',$row->cliente_telefono);
+		                $this->session->set_userdata('direccion',$row->cliente_direccion);
+		                $this->session->set_userdata('imagen_url',$row->cliente_imagen_url);
+		                $this->session->set_userdata('tipo_usuario',$row->cliente_tipo);
+		                $this->session->set_userdata('sexo',$row->cliente_sexo);
+		                $this->session->set_userdata('comuna_nombre',$row->COMUNA_NOMBRE);
+		                $this->session->set_userdata('region_nombre',$row->REGION_NOMBRE);
+		                $this->session->set_userdata('provincia_nombre',$row->PROVINCIA_NOMBRE);
+			            redirect('welcome');
+			        }
 				}else{
 					if($row == 0){
 						$this->session->set_flashdata('error', 'El rut ingresado no existe.');

@@ -77,20 +77,34 @@ $(document).ready(function() {
 	$('#eliminar').click(function() {
 		var cliente_id = table.cell('.selected', 0).data();
 		if (cliente_id != null) {
-			$.post(window.location.origin+"/nutriversion/index.php/admin/eliminar_usuario", {
-				cliente_id: cliente_id
-			}).done(function(data) {
-				if(data == 0){
-					$("#tituloModal").html("Error!");
-					$("#mensajeModal").html("No se puede eliminar el usuario ya que tiene una dieta asignada.");
-					$('#myModal').foundation('reveal', 'open');
-				}else{
-					$("#tituloModal").html("Éxito!");
-					$("#mensajeModal").html("Cliente eliminado con éxito.");
-					$('#myModal').foundation('reveal', 'open');
-					table.row('.selected').remove().draw(false);
-				}
-			});
+			$("#dialog-confirm").dialog({
+		      resizable: false,
+		      height: "auto",
+		      width: 400,
+		      modal: true,
+		      closeText: "",
+		      buttons: {
+		        "Eliminar": function() {
+		        	$( this ).dialog( "close" );
+		          	$.post(window.location.origin+"/nutriversion/index.php/admin/eliminar_usuario", {cliente_id: cliente_id})
+		          	.done(function(data){
+		          		if(data != "0"){
+		          			$("#tituloModal").html("Éxito!");
+							$("#mensajeModal").html("Usuario eliminado con éxito.");
+							$('#myModal').foundation('reveal', 'open');
+							table.row('.selected').remove().draw(false);
+		          		}else{
+		          			$("#tituloModal").html("Error!");
+							$("#mensajeModal").html("No puede eliminar su usuario");
+							$('#myModal').foundation('reveal', 'open');
+		          		}
+		          	});
+		        },
+		        Cancel: function() {
+		          $( this ).dialog( "close" );
+		        }
+		      }
+		    });
 		} else {
 			$("#tituloModal").html("Advertencia!");
 			$("#mensajeModal").html("Debe seleccionar un usuario de la lista.");

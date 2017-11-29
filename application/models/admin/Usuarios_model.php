@@ -11,7 +11,8 @@ class Usuarios_model extends CI_Model {
 	function getUsers(){
 		$query = $this->db->query("SELECT * FROM cliente 
 			left join comuna on cliente_comuna_id = comuna_id
-			inner join tipo_cliente on cliente.cliente_tipo = tipo_cliente.id_tipo_cliente");
+			inner join tipo_cliente on cliente.cliente_tipo = tipo_cliente.id_tipo_cliente
+			where cliente_tipo <> 4");
 		$tabla = "";
 		
 		foreach($query->result_array() as $row )
@@ -104,17 +105,12 @@ class Usuarios_model extends CI_Model {
 	}
 	
 	function delete($id_cliente){
-		$query1 = $this->db->query("select count(*) as num from cliente_dieta where id_cliente = $id_cliente");
-		$res = $query1->row();
-		if ($res->num > 0){
-			return 0;
-		}else{
-			$this->db->flush_cache();
-			$this->db->where('id_cliente', $id_cliente);
-			$this->db->delete('sesion');
-			$this->db->flush_cache();
+		if ($id_cliente != null){
+			$datos = array(
+				'cliente_tipo' => 4
+			);
 			$this->db->where('cliente_id', $id_cliente);
-			return $this->db->delete('cliente');
+			return $this->db->update('cliente',$datos);
 		}
 	}
 

@@ -153,13 +153,14 @@ class Cliente extends CI_Controller {
    	}
 
    	function misDietas(){
+   		$fecha = DateTime::createFromFormat('d/m/Y', date('d')."/".date('m')."/".date('Y'))->format('Y/m/d');
         $this->load->model('cliente/Cliente_model');
         $data = array(
             "dieta" => json_decode($this->Cliente_model->getDietaByIdCliente($this->session->userdata("id"))),
             "columnas" => $this->Cliente_model->cargar_columnas_tabla_dieta(),
             "filas" => $this->Cliente_model->cargar_filas_tabla_dieta(),
             "consumo" => $this->Cliente_model->getAlimentosConsumidos($this->session->userdata("id")),
-            "cumplimiento" => $this->Cliente_model->getCumplimiento($this->session->userdata("id"))
+            "cumplimiento" => $this->Cliente_model->getCumplimiento($this->session->userdata("id"),$fecha)
 
         );
         $this->load->view('cliente/head_view');
@@ -252,6 +253,10 @@ class Cliente extends CI_Controller {
 	public function comuna_data(){
 		$this->load->model('comuna_model');
 		echo json_encode($this->comuna_model->obtener_comuna());
+	}
+	public function prueba(){
+		$fechainput = DateTime::createFromFormat('d/m/Y', date('d')."/".date('m')."/".date('Y'))->format('Y/m/d');
+		echo $fechainput;
 	}
 }
 ?>

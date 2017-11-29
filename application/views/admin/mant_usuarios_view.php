@@ -33,3 +33,5 @@
     <p id="mensajeModal"></p>
     <a class="close-reveal-modal" aria-label="Close" id="closeModal">&#215;</a>
 </div>
+<div id="dialog-confirm" title="¿Eliminar usuario seleccionado?">
+</div>

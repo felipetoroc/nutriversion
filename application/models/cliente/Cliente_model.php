@@ -271,8 +271,8 @@ class Cliente_model extends CI_Model {
         return $query->result_array();
     }
 
-    function getCumplimiento($id_cliente){
-    	$query = $this->db->query("select fn_retorna_cumplimiento(".$id_cliente.") as cumplimiento from dual");
+    function getCumplimiento($id_cliente,$fecha){
+    	$query = $this->db->query("select fn_retorna_cumplimiento(".$id_cliente.",'".$fecha."') as cumplimiento from dual");
     	$resultado = $query->row();
     	if($resultado->cumplimiento == null){
     		return 0;

@@ -55,8 +55,12 @@ class Admin extends CI_Controller {
 	
 	public function eliminar_usuario(){
 		$id_cliente = $this->input->post('cliente_id');
-		$this->load->model('admin/usuarios_model');
-		echo $this->usuarios_model->delete($id_cliente);
+		if($id_cliente == $this->session->userdata("id")){
+			echo "0";
+		}else{
+			$this->load->model('admin/usuarios_model');
+			echo $this->usuarios_model->delete($id_cliente);
+		}
 
 	}
 	
