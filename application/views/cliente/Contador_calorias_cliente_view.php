@@ -2,16 +2,13 @@
 <div class="row">
     <div class="large-12 medium-12 small-12 columns">
         <div class="row">
-        	<div class="large-6 medium-6 columns">
+        	<div class="large-12 medium-6 columns">
                 <div class="large-6 columns">
-                    <p">Ver alimentos consumidos el:</p>
+                    <input id="fecha_detalle" type="date" name="bday" placeholder="Mostrar Alimentos Consumidos el...">
                 </div>
                 <div class="large-6 columns">
-                    <input id="fecha_detalle" type="date" name="bday" >
+                    <input id="btnMostrarTodo" type="button" class="button tiny warning" value="Mostrar Todo">
                 </div>
-            </div>
-            <div class="large-6 medium-6 columns">
-                <h3 style="color:green" id="sum_cal">Calorias Consumidas Hoy: <?=$calorias_cal?></h3>
             </div>
         </div>
         <div class="row">
@@ -22,6 +19,8 @@
                              <th>id_detalle</th>
                              <th>Cliente</th>
                              <th>Fecha</th>
+                             <th>Categoria</th>
+                             <th>Sub Categoría</th>
                              <th>Comida</th>
                              <th>Alimento</th>
                              <th>Porción</th>
@@ -46,3 +45,11 @@
     <p id="mensajeError"></p>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#fecha_detalle").datepicker({
+            dateFormat : "dd/mm/yy",
+            maxDate: "0D"
+        });
+    });
+</script>

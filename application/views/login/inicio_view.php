@@ -16,7 +16,6 @@
                 <input type="submit" class="button radius" value="Iniciar Sesión">
             </form>
             <p>¿No es usuario? <a href="<?=base_url()?>index.php/registro">Registrarme.</a></p>
-            <p><a href="<?php echo base_url() ?>index.php/Login/ingresarmail">Recuperar Contraseña</a></p>
         </div>
     </div>
 </div>

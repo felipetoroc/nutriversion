@@ -97,22 +97,21 @@ class Cliente extends CI_Controller {
     }
    
     function mi_contador(){
-    	$fecha = date("Y")."/".date("m")."/".date("d");
-    	$this->load->model('cliente/cliente_model');
-    	$data = array(
-    		'calorias_cal' => $this->cliente_model->get_sum_calorias_contador($fecha,$this->session->userdata("id"))
-    	);
 		$this->load->view('cliente/head_view');
 		$this->load->view('cliente/baner_view');
 		$this->load->view('cliente/topbar_view');
 		/*$this->load->view('cliente/sidebar_view');*/
-		$this->load->view('cliente/Contador_calorias_cliente_view',$data);
+		$this->load->view('cliente/Contador_calorias_cliente_view');
 		$this->load->view('cliente/foot_view');
     }
    
     function asignar_fecha_detalle(){
-		$datos = array('fecha_detalle' => $this->input->post('fecha_detalle'));
+    	$fechaCorrecta = $this->input->post("fecha_detalle");
+		$datos = array('fecha_detalle' => $fechaCorrecta);
 		$this->session->set_userdata($datos);
+   	}
+   	function desasignar_fecha_detalle(){
+		$this->session->unset_userdata('fecha_detalle');
    	}
 
 	function contador_data(){
@@ -152,16 +151,35 @@ class Cliente extends CI_Controller {
 	   $this->load->view('cliente/GraficoPeso_view');
    	}
 
-   	function misDietas(){
-   		$fecha = DateTime::createFromFormat('d/m/Y', date('d')."/".date('m')."/".date('Y'))->format('Y/m/d');
+   	function misDietas($fecha=null){
+   		$fechaPrueba;
+   		if($fecha != null){
+   			$fechas = explode("-",$fecha);
+   			if(count($fechas) == 3){
+   				$verificarFecha = checkdate($fechas[1],$fechas[0],$fechas[2]);
+			 	if($verificarFecha == true){
+		   			$fechaPrueba = $fecha;
+		   		}else{
+		   			$fechaPrueba = date('d')."-".date("m")."-".date("Y");
+		   		}
+   			}else{
+   				$fechaPrueba = date('d')."-".date("m")."-".date("Y");
+   			}
+	   	}else{
+	   		$fechaPrueba = date('d')."-".date("m")."-".date("Y");
+	   	}
+	   	$fechaCorrect = DateTime::createFromFormat('d-m-Y',$fechaPrueba)->format('Y/m/d');
         $this->load->model('cliente/Cliente_model');
+        $id_dieta = $this->Cliente_model->getIdDietaByIdCliente($this->session->userdata("id"));
         $data = array(
             "dieta" => json_decode($this->Cliente_model->getDietaByIdCliente($this->session->userdata("id"))),
             "columnas" => $this->Cliente_model->cargar_columnas_tabla_dieta(),
             "filas" => $this->Cliente_model->cargar_filas_tabla_dieta(),
-            "consumo" => $this->Cliente_model->getAlimentosConsumidos($this->session->userdata("id")),
-            "cumplimiento" => $this->Cliente_model->getCumplimiento($this->session->userdata("id"),$fecha)
-
+            "consumo" => $this->Cliente_model->getAlimentosConsumidos($this->session->userdata("id"),$fechaCorrect),
+            "cumplimiento" => $this->Cliente_model->getCumplimiento($this->session->userdata("id"),$fechaCorrect),
+            "fechaIngresada" => DateTime::createFromFormat('Y/m/d',$fechaCorrect)->format('d-m-Y'),
+            'calorias_cal' => $this->Cliente_model->get_sum_calorias_contador($fechaCorrect,$this->session->userdata("id")),
+            'calorias' => $this->Cliente_model->getCaloriasDieta($id_dieta)
         );
         $this->load->view('cliente/head_view');
         $this->load->view('cliente/baner_view');
@@ -254,9 +272,10 @@ class Cliente extends CI_Controller {
 		$this->load->model('comuna_model');
 		echo json_encode($this->comuna_model->obtener_comuna());
 	}
-	public function prueba(){
-		$fechainput = DateTime::createFromFormat('d/m/Y', date('d')."/".date('m')."/".date('Y'))->format('Y/m/d');
-		echo $fechainput;
+	public function prueba($fecha=null){
+		$fechas = explode("-",$fecha);
+		echo count($fechas);
+		 /*checkdate(month,day,year);*/
 	}
 }
 ?>

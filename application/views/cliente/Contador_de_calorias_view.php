@@ -38,7 +38,9 @@
         <thead>
           <tr>
           <th>ID</th>
-          <th>Nombre Alimento</th>
+          <th>Categoría</th>
+          <th>Sub Categoría</th>
+          <th>Nombre</th>
           <th>Gramos</th>
           <th>Calorias</th>
           </tr>

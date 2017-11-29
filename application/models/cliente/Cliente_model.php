@@ -98,15 +98,16 @@ class Cliente_model extends CI_Model {
 	//***************************contador de calorias *****************************************************
 
 	function leer_contador(){
-		$query = $this->db->query("SELECT  ID_ALIMENTO,
-		                                 ALIMENTO,
-										 Cantidad_gramos,
-										 Calorias
-										 FROM alimentos");
+		$query = $this->db->query("SELECT *
+								 FROM alimentos
+								 inner join sub_categoria on sub_categoria.sub_cate_id = alimentos.ID_SUBCATE
+							     inner join categoria on sub_categoria.categoria_id = categoria.categoria_id");
         $tabla = "";
         foreach($query->result_array() as $row )
         {
             $tabla.='{"ID_ALIMENTO":"'.$row['ID_ALIMENTO'].'",
+            "categoria_descr":"'.$row['categoria_descr'].'",
+            "sub_cate_descr":"'.$row['sub_cate_descr'].'",
             "ALIMENTO":"'.$row['ALIMENTO'].'",
             "Cantidad_gramos":"'.$row['Cantidad_gramos'].'",
             "Calorias":"'.$row['Calorias'].'"},';
@@ -149,39 +150,45 @@ class Cliente_model extends CI_Model {
 
 	function leer_contador_cliente(){
 		$cliente = $this->session->userdata('id');
-		$fecha_detalle = date("Y-m-d");
+		$fecha_detalle = date("Y/m/d");
 		if($this->session->userdata('fecha_detalle')){
-			$fecha_detalle = $this->session->userdata('fecha_detalle');
+			$fecha_detalle = DateTime::createFromFormat('d/m/Y',$this->session->userdata('fecha_detalle'))->format('Y/m/d');
 		}
 		$query = $this->db->query("select 
-		                             det.id_detalle as  id_detalle
-									,cli.cliente_nombre as cliente
-									,cab.fecha as  fecha
-									,co.nombre as comida
-									,ali.alimento as  alimento
-									,sum(det.cantidad) as cantidad
-									,sum(det.calorias) as calorias
-									from 
-									contador_calorias_cabecera cab
-									inner join contador_calorias_detalle det on  cab.id_cabecera = det.id_cabecera
-									inner join cliente cli on cab.id_cliente = cli.cliente_id 
-									inner join comida co on det.id_comida = co.id_comida
-									inner join alimentos ali on det.id_alimento = ali.id_alimento
-									where cab.fecha   = '".$fecha_detalle."'
-									and  cab.id_cliente =".$cliente." 
-									group by cli.cliente_nombre
-									,cab.fecha
-									,co.nombre
-									,ali.alimento
-									order by cli.cliente_nombre
-									,cab.fecha
-									,co.id_comida
-									,ali.alimento");
+								 det.id_detalle as  id_detalle
+								,cli.cliente_nombre as cliente
+								,cab.fecha as  fecha
+								,co.nombre as comida
+							    ,subc.sub_cate_descr as subDesc
+							    ,cate.categoria_descr as cateDesc
+								,ali.alimento as  alimento
+								,sum(det.cantidad) as cantidad
+								,sum(det.calorias) as calorias
+								from 
+								contador_calorias_cabecera cab
+								inner join contador_calorias_detalle det on  cab.id_cabecera = det.id_cabecera
+								inner join cliente cli on cab.id_cliente = cli.cliente_id 
+								inner join comida co on det.id_comida = co.id_comida
+								inner join alimentos ali on det.id_alimento = ali.id_alimento
+							    inner join sub_categoria subc on ali.ID_SUBCATE = subc.sub_cate_id
+							    inner join categoria cate on subc.categoria_id = cate.categoria_id
+								where cab.fecha   = '".$fecha_detalle."'
+								and  cab.id_cliente =".$cliente." 
+								group by cli.cliente_nombre
+								,cab.fecha
+								,co.nombre
+								,ali.alimento
+								order by cli.cliente_nombre
+								,cab.fecha
+								,co.id_comida
+								,ali.alimento");
 		$tabla = "";
         foreach($query->result_array() as $row ){
             $tabla.='{"id_detalle":"'.$row['id_detalle'].'",
                 "cliente":"'.$row['cliente'].'",
                 "fecha":"'.$row['fecha'].'",
+                "cateDesc":"'.$row['cateDesc'].'",
+                "subDesc":"'.$row['subDesc'].'",
                 "comida":"'.$row['comida'].'",
                 "alimento":"'.$row['alimento'].'",
                 "cantidad":"'.$row['cantidad'].'",
@@ -240,29 +247,29 @@ class Cliente_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getAlimentosConsumidos($id_cliente){
+    public function getAlimentosConsumidos($id_cliente,$fecha){
 
         $query = $this->db->query("select
-                                     a.id_cliente 
-                                    ,c.categoria_id
-                                    ,b.id_comida
-                                    ,b.cantidad as porcion
-                                    from contador_calorias_cabecera a
-                                    inner join  contador_calorias_detalle b on a.id_cabecera = b.id_cabecera
-                                    inner join alimentos m  on b.id_alimento = m.ID_ALIMENTO 
-                                    inner join sub_categoria x on x.sub_cate_id = m.ID_SUBCATE 
-                                    inner join categoria c on  x.categoria_id = c.categoria_id
-                                    inner join comida d on b.id_comida = d.id_comida
-                                    where a.id_cliente = $id_cliente
-                                    and fecha = date_format(now(),'%Y-%m-%d')
-                                    group by
-                                    a.id_cliente 
-                                    ,c.categoria_id
-                                    ,b.id_comida
-                                    order by
-                                    a.id_cliente 
-                                    ,c.categoria_id
-                                    ,b.id_comida;");
+								 a.id_cliente 
+								,c.categoria_id
+								,b.id_comida
+								,sum(b.cantidad) as porcion
+								from contador_calorias_cabecera a
+								inner join  contador_calorias_detalle b on a.id_cabecera = b.id_cabecera
+								inner join alimentos m  on b.id_alimento = m.ID_ALIMENTO 
+								inner join sub_categoria x on x.sub_cate_id = m.ID_SUBCATE 
+								inner join categoria c on  x.categoria_id = c.categoria_id
+								inner join comida d on b.id_comida = d.id_comida
+								where a.id_cliente = $id_cliente
+								and fecha = '$fecha'
+								group by
+								a.id_cliente 
+								,c.categoria_id
+								,b.id_comida
+								order by
+								a.id_cliente 
+								,c.categoria_id
+								,b.id_comida;");
         return $query->result_array();
     }
 
@@ -309,6 +316,25 @@ class Cliente_model extends CI_Model {
 		}else{
 			return 0;
 		}
+    }
+    function getCaloriasDieta($id_dieta){
+        $query = $this->db->query("select fn_retorna_promedio_calorias(".$id_dieta.") as calorias from dual");
+        $resultado = $query->row();
+        return $resultado->calorias;
+    }
+    function getIdDietaByIdCliente($id_cliente){
+        $this->db->select_max('fecha');
+        $this->db->where('id_cliente',$id_cliente);
+        $query1 = $this->db->get('cliente_dieta');
+	    $ultimaFecha = $query1->row("fecha");
+        $this->db->flush_cache();
+        $this->db->select('id_dieta');
+        $this->db->from('cliente_dieta');
+        $this->db->where('cliente_dieta.id_cliente',$id_cliente);
+        $this->db->where('cliente_dieta.fecha',$ultimaFecha);
+        $query = $this->db->get();
+        $res = $query->row();
+        return $res->id_dieta;
     }
 }
 ?>
