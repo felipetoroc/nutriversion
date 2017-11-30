@@ -52,11 +52,27 @@ $(document).ready(function() {
         var nombre_cliente = $("#nombre_cliente").val();
         var apellido_cliente = $("#apellido_cliente").val();
         var ccd = $("#cons_cal_diario").html();
+        var btn = "dieta";
         if ($("#cons_cal_diario").html() != ""){
-            $.post( window.location.origin+"/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente,ccd:ccd})
+            $.post( window.location.origin+"/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente,ccd:ccd,btn:btn})
                 .done(function(data){
                     $( location ).attr("href", data);
                 });
+        }else{
+            $('#myModal').foundation('reveal', 'open');
+        }
+    });
+    $("#btnActualizarEstado").on('click',function(){
+        var cliente_seleccionado = tabla.cell('.selected',1).data();
+        var id_cliente = $("#id_cliente").val();
+        var nombre_cliente = $("#nombre_cliente").val();
+        var apellido_cliente = $("#apellido_cliente").val();
+        var btn = "estado";
+        if(cliente_seleccionado != null){
+            $.post( window.location.origin+"/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente,btn:btn})
+                .done(function(data){
+                    $( location ).attr("href", data);
+                });  
         }else{
             $('#myModal').foundation('reveal', 'open');
         }

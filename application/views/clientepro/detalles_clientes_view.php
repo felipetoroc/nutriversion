@@ -23,6 +23,7 @@
                 <input type="hidden" id="nombre_cliente" value="" readonly>
                 <input type="hidden" id="apellido_cliente" value="" readonly>
                 <h4>Estado Físico</h4>
+                <button id="btnActualizarEstado" class="btn-sm">Ingresar o Actualizar Estado Físico</button>
                 <table class="table">
                     <tr>
                         <td>Nivel de actividad fisica</td><td><label id="niv_actividad"></label></td>
@@ -78,6 +79,6 @@
 </div>
 <div id="myModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">Advertencia!</h2>
-    <p>Debe seleccionar un Paciente que tenga su estado físico ingresado</p>
+    <p>Debe seleccionar un Paciente.</p>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

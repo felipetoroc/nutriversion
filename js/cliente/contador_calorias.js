@@ -39,9 +39,9 @@ $(document).ready( function leer_registos(){
 	$( "#editar" ).click(function() {
 		$.post( window.location.origin+"/nutriversion/index.php/cliente/contador_contador_cabecera").done();
 		var id_alimento = table.cell('.selected',0).data();
-		var nombre_alimento = table.cell('.selected',1).data();
-		var porcion = table.cell('.selected',2).data();
-		var calorias = table.cell('.selected',3).data();
+		var nombre_alimento = table.cell('.selected',3).data();
+		var porcion = table.cell('.selected',4).data();
+		var calorias = table.cell('.selected',5).data();
 		if (id_alimento != null){
 	  $( "#dialog" ).dialog( "open" );
       $('#num').val(id_alimento);
@@ -74,7 +74,7 @@ $(document).ready( function leer_registos(){
 				success:function(result){
 					$("#mens").html(result);
 					//table.ajax.reload();
-					table.ajax.url ('http://localhost/nutriversion/index.php/Categoria_alimento/contador_data') .load ();
+					table.ajax.url ('http://localhost/nutriversion/index.php/Cliente/contador_data') .load ();
 					$("#dialog").dialog("close");
 					$('#ingresoContador').foundation('reveal', 'open');
 				}

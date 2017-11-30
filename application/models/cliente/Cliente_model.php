@@ -277,6 +277,14 @@ class Cliente_model extends CI_Model {
     	$query = $this->db->get("objetivo");
         return $query->result_array();
     }
+    function getEnfermedades(){
+    	$query = $this->db->get("enfermedad");
+        return $query->result_array();
+    }
+    function getAlergias(){
+    	$query = $this->db->get("alergias");
+        return $query->result_array();
+    }
 
     function getCumplimiento($id_cliente,$fecha){
     	$query = $this->db->query("select fn_retorna_cumplimiento(".$id_cliente.",'".$fecha."') as cumplimiento from dual");
@@ -334,7 +342,11 @@ class Cliente_model extends CI_Model {
         $this->db->where('cliente_dieta.fecha',$ultimaFecha);
         $query = $this->db->get();
         $res = $query->row();
-        return $res->id_dieta;
+        if($res != null){
+        	 return $res->id_dieta;
+        }else{
+        	return 0;
+        }
     }
 }
 ?>

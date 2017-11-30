@@ -134,8 +134,12 @@ class Clientepro extends CI_Controller
             $this->session->set_userdata('id_cliente',$this->input->post("id_cliente"));
             $this->session->set_userdata('nombre_cliente',$this->input->post("nombre_cliente"));
             $this->session->set_userdata('apellido_cliente',$this->input->post("apellido_cliente"));
-            $this->session->set_userdata('ccd',$this->input->post("ccd"));
-            echo base_url()."index.php/clientepro/dietas";
+            if($this->input->post('btn') == 'dieta'){
+                echo base_url()."index.php/clientepro/dietas";
+            }else if($this->input->post('btn') == 'estado'){
+                echo base_url()."index.php/clientepro/editarestado";
+            }
+            
         }
     }
 
@@ -161,6 +165,33 @@ class Clientepro extends CI_Controller
         $this->session->unset_userdata('apellido_cliente');
         $this->session->unset_userdata('ccd');
         echo base_url('index.php/clientepro/clientes');
+    }
+
+    public function editarestado(){
+        $this->load->model('clientepro/clientePro_model');
+        $data['objetivos'] = $this->clientePro_model->getObjetivos();
+        $data['enfermedades'] = $this->clientePro_model->getEnfermedades();
+        $data['alergias'] = $this->clientePro_model->getAlergias();
+        $this->load->view('clientepro/head_view');
+        $this->load->view('clientepro/baner_view');
+        $this->load->view('clientepro/topbar_view');
+        $this->load->view('clientepro/edit_estado_view',$data);
+        $this->load->view('clientepro/foot_view');
+    }
+    public function nuevo_estado(){
+        $id_cliente = $this->session->userdata('id_cliente');
+        $altura = $this->input->post('Altura');
+        $peso = $this->input->post('Peso');
+        $cuello = $this->input->post('Cuello');
+        $cintura = $this->input->post('Cintura');
+        $cadera = $this->input->post('Cadera');
+        $factor = $this->input->post('factor');
+        $objetivo = $this->input->post('objetivo');
+        $this->load->model("clientepro/clientePro_model");
+        //echo $this->cliente_model->insertar_estado();
+        if($this->clientePro_model->calculos($id_cliente,$altura,$peso,$cuello,$cintura,$cadera,$factor,$objetivo)){
+            redirect('clientepro/clientes');
+        }
     }
 }
 

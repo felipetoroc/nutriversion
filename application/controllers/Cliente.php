@@ -57,12 +57,8 @@ class Cliente extends CI_Controller {
 			$data['estado_fisico'] = $this->cliente_model->recuperar_estado();
 			$this->load->view('cliente/estado_fisico_view',$data);
 		}else{
-			if ($this->session->flashdata('autorizado_por')){
-				$data['objetivos'] = $this->cliente_model->getObjetivos();
-				$this->load->view('cliente/primer_inicio_view',$data);
-			}else{
-				$this->load->view('cliente/autorizacion_view');
-			}
+			$data['mensaje'] = "El nutricionista aún no ingresa o actualiza su estado físico.";	
+			$this->load->view('cliente/estado_desactualizado_view',$data);
 		}
 		$this->load->view('cliente/foot_view');
 	}
@@ -171,22 +167,32 @@ class Cliente extends CI_Controller {
 	   	$fechaCorrect = DateTime::createFromFormat('d-m-Y',$fechaPrueba)->format('Y/m/d');
         $this->load->model('cliente/Cliente_model');
         $id_dieta = $this->Cliente_model->getIdDietaByIdCliente($this->session->userdata("id"));
-        $data = array(
-            "dieta" => json_decode($this->Cliente_model->getDietaByIdCliente($this->session->userdata("id"))),
-            "columnas" => $this->Cliente_model->cargar_columnas_tabla_dieta(),
-            "filas" => $this->Cliente_model->cargar_filas_tabla_dieta(),
-            "consumo" => $this->Cliente_model->getAlimentosConsumidos($this->session->userdata("id"),$fechaCorrect),
-            "cumplimiento" => $this->Cliente_model->getCumplimiento($this->session->userdata("id"),$fechaCorrect),
-            "fechaIngresada" => DateTime::createFromFormat('Y/m/d',$fechaCorrect)->format('d-m-Y'),
-            'calorias_cal' => $this->Cliente_model->get_sum_calorias_contador($fechaCorrect,$this->session->userdata("id")),
-            'calorias' => $this->Cliente_model->getCaloriasDieta($id_dieta)
-        );
-        $this->load->view('cliente/head_view');
-        $this->load->view('cliente/baner_view');
-        $this->load->view('cliente/topbar_view');
-        /*$this->load->view('cliente/sidebar_view');*/
-        $this->load->view('cliente/misDietas_view',$data);
-        $this->load->view('cliente/foot_view');
+        if ($id_dieta > 0){
+        	$data = array(
+	            "dieta" => json_decode($this->Cliente_model->getDietaByIdCliente($this->session->userdata("id"))),
+	            "columnas" => $this->Cliente_model->cargar_columnas_tabla_dieta(),
+	            "filas" => $this->Cliente_model->cargar_filas_tabla_dieta(),
+	            "consumo" => $this->Cliente_model->getAlimentosConsumidos($this->session->userdata("id"),$fechaCorrect),
+	            "cumplimiento" => $this->Cliente_model->getCumplimiento($this->session->userdata("id"),$fechaCorrect),
+	            "fechaIngresada" => DateTime::createFromFormat('Y/m/d',$fechaCorrect)->format('d-m-Y'),
+	            'calorias_cal' => $this->Cliente_model->get_sum_calorias_contador($fechaCorrect,$this->session->userdata("id")),
+	            'calorias' => $this->Cliente_model->getCaloriasDieta($id_dieta)
+	        );
+	        $this->load->view('cliente/head_view');
+	        $this->load->view('cliente/baner_view');
+	        $this->load->view('cliente/topbar_view');
+	        /*$this->load->view('cliente/sidebar_view');*/
+	        $this->load->view('cliente/misDietas_view',$data);
+	        $this->load->view('cliente/foot_view');
+        }else{
+        	$data['mensaje'] = "El nutricionista aún le asigna una dieta";
+        	$this->load->view('cliente/head_view');
+	        $this->load->view('cliente/baner_view');
+	        $this->load->view('cliente/topbar_view');
+	        /*$this->load->view('cliente/sidebar_view');*/
+	        $this->load->view('cliente/estado_desactualizado_view',$data);
+	        $this->load->view('cliente/foot_view');
+        }
     }
 
     function verificarProfesional(){
