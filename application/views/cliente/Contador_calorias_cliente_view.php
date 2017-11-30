@@ -7,7 +7,7 @@
                     <input id="fecha_detalle" type="text" name="bday" placeholder="Mostrar Alimentos Consumidos el...">
                 </div>
                 <div class="large-6 columns">
-                    <input id="btnMostrarTodo" type="button" class="button tiny warning" value="Mostrar Todo">
+                    <input id="btnMostrarTodo" type="button" class="button tiny warning" value="Volver a Hoy">
                 </div>
             </div>
         </div>
