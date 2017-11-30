@@ -32,71 +32,71 @@
                         <input type="number" value="<?=$datos_usuario->cliente_telefono?>" name="telefono" minlength="9" maxlength="9" placeholder="99999999" required>
                 </div>
                 <div class="large-6 columns">
-                        <div id="comboscomuna">
-                            <label>Región</label>
-                            <select name="region" id="region" required>
-                                <option value="0">Seleccione Región...</option>
-                                <?php foreach ($regiones as $row){ ?>
-                                    <option value="<?=$row->REGION_ID;?>"><?=$row->REGION_NOMBRE;?></option>
-                                <?php } ?>
-                            </select>
-                            <span class="input-group-addon"></span>
-                            <label>Provincia</label>
-                            <select name="provincia" id="provincia"></select>
-                            <label>Comuna</label>
-                            <select name="id_comuna" id="id_comuna">
-                                <option value="<?=$datos_usuario->COMUNA_ID?>"><?=$datos_usuario->COMUNA_NOMBRE?></option>
-                            </select>
-                        </div>
-                        <label>Dirección</label>
-                        <input type="text" value="<?=$datos_usuario->cliente_direccion?>" name="direccion" minlength="3" maxlength="50" placeholder="Avenida Vicuña Mackenna 2100 dpto 404" required>
-                        <label>Sexo</label>
-                        <?php if($datos_usuario->cliente_sexo == 1){
-                        ?>
-                        <INPUT type="radio" name="sexo" value="1" checked="checked" required> Hombre <br>
-                        <INPUT type="radio" name="sexo" value="2" required> Mujer <br>
-                        <?php }else{
-                        ?>
-                        <INPUT type="radio" name="sexo" value="1" required> Hombre <br>
-                        <INPUT type="radio" name="sexo" value="2" checked="checked" required> Mujer <br>
-                        <?php }
-                        ?>
-                        <?php if ($datos_usuario->peso == null){ ?>
-                            <?php if ($datos_usuario->id_cliente != null){ ?>
-                            <input type="hidden" name="tipo_usuario" value="<?=$datos_usuario->cliente_tipo?>">
-                            <?php }else{?>
-                            <label>Permisos de Usuario</label>
-                            <select name="tipo_usuario" id="tipo_usuario" required> 
-                                <option value="">Seleccionar Permiso</option>
-                                <?php if($datos_usuario->cliente_tipo == 1){ ?>
-                                    <option value="1" selected>Paciente</option>
-                                    <option value="2">Profesional</option>
-                                    <option value="3">Administrador</option>
-                                <?php } ?>
-                                <?php if($datos_usuario->cliente_tipo == 2){ ?>
-                                    <option value="1">Paciente</option>
-                                    <option value="2" selected>Profesional</option>
-                                    <option value="3">Administrador</option>
-                                <?php } ?>
-                                <?php if($datos_usuario->cliente_tipo == 3){ ?>
-                                    <option value="1">Paciente</option>
-                                    <option value="2">Profesional</option>
-                                    <option value="3" selected>Administrador</option>
-                                <?php } ?>
-                            </select>
-                            <?php } ?>  
-                            <div id="divsucursal">
-                                <label>Sucursal</label>
-                                <select name="sucursal"> 
-                                    <option value="">Seleccionar Sucursal</option>
-                                    <?php foreach ($sucursales as $row){ ?>
+                    <div id="comboscomuna">
+                        <label>Región</label>
+                        <select name="region" id="region" required>
+                            <option value="0">Seleccione Región...</option>
+                            <?php foreach ($regiones as $row){ ?>
+                                <option value="<?=$row->REGION_ID;?>"><?=$row->REGION_NOMBRE;?></option>
+                            <?php } ?>
+                        </select>
+                        <span class="input-group-addon"></span>
+                        <label>Provincia</label>
+                        <select name="provincia" id="provincia"></select>
+                        <label>Comuna</label>
+                        <select name="id_comuna" id="id_comuna">
+                            <option value="<?=$datos_usuario->COMUNA_ID?>"><?=$datos_usuario->COMUNA_NOMBRE?></option>
+                        </select>
+                    </div>
+                    <label>Dirección</label>
+                    <input type="text" value="<?=$datos_usuario->cliente_direccion?>" name="direccion" minlength="3" maxlength="50" placeholder="Avenida Vicuña Mackenna 2100 dpto 404" required>
+                    <label>Sexo</label>
+                    <?php if($datos_usuario->cliente_sexo == 1){
+                    ?>
+                    <INPUT type="radio" name="sexo" value="1" checked="checked" required> Hombre <br>
+                    <INPUT type="radio" name="sexo" value="2" required> Mujer <br>
+                    <?php }else{
+                    ?>
+                    <INPUT type="radio" name="sexo" value="1" required> Hombre <br>
+                    <INPUT type="radio" name="sexo" value="2" checked="checked" required> Mujer <br>
+                    <?php }
+                    ?>
+                    <?php if ($datos_usuario->peso == null){ ?>
+                        <label>Permisos de Usuario</label>
+                        <select name="tipo_usuario" id="tipo_usuario" required> 
+                            <option value="">Seleccionar Permiso</option>
+                            <?php if($datos_usuario->cliente_tipo == 1){ ?>
+                                <option value="1" selected>Paciente</option>
+                                <option value="2">Profesional</option>
+                                <option value="3">Administrador</option>
+                            <?php } ?>
+                            <?php if($datos_usuario->cliente_tipo == 2){ ?>
+                                <option value="1">Paciente</option>
+                                <option value="2" selected>Profesional</option>
+                                <option value="3">Administrador</option>
+                            <?php } ?>
+                            <?php if($datos_usuario->cliente_tipo == 3){ ?>
+                                <option value="1">Paciente</option>
+                                <option value="2">Profesional</option>
+                                <option value="3" selected>Administrador</option>
+                            <?php } ?>
+                        </select>
+                        <div id="divsucursal">
+                        <label>Sucursal</label>
+                            <select name="sucursal"> 
+                                <option value="">Seleccionar Sucursal</option>
+                                <?php foreach ($sucursales as $row){ ?>
+                                    <?php if($row->idSucursal == $datos_usuario->idSucursal){ ?>
+                                        <option value="<?=$row->idSucursal;?>" selected><?=$row->NombreSucursal;?></option>
+                                    <?php }else{ ?>
                                         <option value="<?=$row->idSucursal;?>"><?=$row->NombreSucursal;?></option>
                                     <?php } ?>
-                                </select>
-                            </div>
-                        <?php }else{ ?>
-                            <input type="hidden" name="tipo_usuario" value="<?=$datos_usuario->cliente_tipo?>">
-                        <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    <?php }else{ ?>
+                        <input type="hidden" name="tipo_usuario" value="<?=$datos_usuario->cliente_tipo?>">
+                    <?php } ?>
                 </div>
             </div>
             <div class="row">

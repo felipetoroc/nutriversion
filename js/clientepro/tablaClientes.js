@@ -6,6 +6,7 @@ $(document).ready(function() {
         responsive : true,
         columns: [
             { data: "cliente_id" , visible : false},
+            { data: "cliente_rut"},
             { data: "cliente_nombre"},
             { data: "cliente_apellido"}
         ]
@@ -53,12 +54,13 @@ $(document).ready(function() {
         var apellido_cliente = $("#apellido_cliente").val();
         var ccd = $("#cons_cal_diario").html();
         var btn = "dieta";
-        if ($("#cons_cal_diario").html() != ""){
+        if ($("#niv_actividad").html() != ""){
             $.post( window.location.origin+"/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente,ccd:ccd,btn:btn})
                 .done(function(data){
                     $( location ).attr("href", data);
                 });
         }else{
+            $("#textModal").html("No puede asignar una dieta a un paciente que no tiene su estado físico.")
             $('#myModal').foundation('reveal', 'open');
         }
     });
@@ -74,6 +76,7 @@ $(document).ready(function() {
                     $( location ).attr("href", data);
                 });  
         }else{
+            $("#textModal").html("Debe seleccionar un paciente.")
             $('#myModal').foundation('reveal', 'open');
         }
     });

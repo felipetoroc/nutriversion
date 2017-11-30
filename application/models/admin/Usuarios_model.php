@@ -160,7 +160,11 @@ class Usuarios_model extends CI_Model {
             'cliente_sexo' => $sexo,
             'cliente_tipo' => $tipo,
             'cliente_imagen_url' => 'img/usuario.jpg'
+
         );
+        if($tipo == 2 | $tipo == 3){
+            $this->db->query("insert into cliente_sucursal values ($sucursal,$rut,now())");
+        }
         $this->db->where('cliente_id', $id_cliente);
 		return $this->db->update('cliente', $data);
     

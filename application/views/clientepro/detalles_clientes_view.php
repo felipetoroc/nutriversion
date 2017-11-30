@@ -1,17 +1,18 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/clientepro/tablaClientes.js"></script>
 <div class="large-12 medium-12 small-12 columns">
-    <div class="large-2 medium-4 small-12 columns">
+    <div class="large-3 medium-4 small-12 columns">
         <table id="tabla" class="table">
             <thead>
             <tr>
                 <th>id</th>
+                <th>Rut</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
             </tr>
             </thead>
         </table>
     </div>
-    <div class="large-10 medium-8 small-12 columns">
+    <div class="large-9 medium-8 small-12 columns">
         <div class="row">
             <div class="large-10 medium-12 small-12 columns">
                 <h3>Datos Paciente Seleccionado</h3>
@@ -79,6 +80,6 @@
 </div>
 <div id="myModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">Advertencia!</h2>
-    <p>Debe seleccionar un Paciente.</p>
+    <p id="textModal"></p>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
