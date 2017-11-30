@@ -22,7 +22,7 @@
                 <th>Fecha Creacion</th>
                 <th>Fecha Modificacion</th>
                 <th>Estado</th>
-                <th>Creado Por</th>
+                <th>Creada Por</th>
             </tr>
         </thead>
     </table>

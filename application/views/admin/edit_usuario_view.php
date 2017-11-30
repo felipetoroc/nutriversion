@@ -21,7 +21,7 @@
                         <label>Apellido Paterno</label>
                         <input type="text" value="<?=$apellidos[0]?>" name="apellidop" minlength="2" maxlength="15" placeholder="Gonzales" required>
                         <label>Apellido Materno</label>
-                        <input type="text" value="<?=$apellidos[1]?>" name="apellidom" minlength="2" maxlength="15" placeholder="Sanchez" required>
+                        <input type="text" value="<?php echo (isset($apellidos[1]))?$apellidos[1]:"" ?>" name="apellidom" minlength="2" maxlength="15" placeholder="Sanchez" required>
                         <label>Rut</label>
                         <input type="text" value="<?=$datos_usuario->cliente_rut?>" name="rut" minlength="8" maxlength="12" placeholder="11111111-1" readonly>
                         <label>Fecha Nacimiento</label>

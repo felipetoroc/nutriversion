@@ -19,8 +19,15 @@ class Cliente_model extends CI_Model {
 		return $query->row();
 	}
 
-	function recuperar_estado(){
-		$query = $this->db->query("select * from estado_fisico inner join cliente where id_cliente = cliente_id and id_cliente = ".$this->session->userdata("id")." AND fecha_registro = fn_retorna_max_estado( ".$this->session->userdata("id")." )");
+	function recuperar_estado($id_cliente){
+		$query = $this->db->query("select * from estado_fisico 
+					inner join cliente on cliente.cliente_id = estado_fisico.id_cliente 
+					where id_cliente = $id_cliente
+					AND fecha_registro = (
+					SELECT MAX(fecha_registro)
+					FROM estado_fisico
+					WHERE id_cliente = $id_cliente
+					)");
 		return $query;
 	}
 

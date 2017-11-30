@@ -7,7 +7,7 @@ class Dietas_model extends CI_Model {
     }
 
 	function getDietas(){
-		$query = $this->db->query("SELECT * FROM dieta_cabecera where estado = 2 or estado = 1");
+		$query = $this->db->query("SELECT * FROM dieta_cabecera inner join cliente on dieta_cabecera.creado_por = cliente.cliente_id where estado = 2 or estado = 1");
 		$tabla = "";
 		foreach($query->result_array() as $row )
 		{
@@ -17,7 +17,7 @@ class Dietas_model extends CI_Model {
 			"fecha_creacion":"'.$row['fecha_creacion'].'",
             "fecha_modificacion":"'.$row['fecha_modificacion'].'",
             "estado":"'.$row['estado'].'",
-            "creado_por":"'.$row['creado_por'].'"
+            "creado_por":"'.$row['cliente_nombre']." ".$row['cliente_apellido'].'"
 			},';			
 		}
 		$tabla = substr($tabla,0, strlen($tabla) - 1);

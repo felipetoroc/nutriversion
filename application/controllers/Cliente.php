@@ -54,7 +54,7 @@ class Cliente extends CI_Controller {
 		$this->load->view('cliente/topbar_view');
 		/*$this->load->view('cliente/sidebar_view');*/
 		if ($resultado->num > 0 &&  $valida_estado->lala == 0 ){
-			$data['estado_fisico'] = $this->cliente_model->recuperar_estado();
+			$data['estado_fisico'] = $this->cliente_model->recuperar_estado($this->session->userdata('id'));
 			$this->load->view('cliente/estado_fisico_view',$data);
 		}else{
 			$data['mensaje'] = "El nutricionista aún no ingresa o actualiza su estado físico.";	

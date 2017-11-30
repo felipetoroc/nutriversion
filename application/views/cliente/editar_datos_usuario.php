@@ -15,7 +15,7 @@
                 <label>Apellido Paterno</label>
                 <input type="text" name="apellidop" value="<?=$apellidos[0]?>" minlength="2" maxlength="15" readonly>
                 <label>Apellido Materno</label>
-                <input type="text" name="apellidom" value="<?=$apellidos[1]?>" minlength="2" maxlength="15" readonly>
+                <input type="text" name="apellidom" value="<?php echo (isset($apellidos[1]))?$apellidos[1]:"" ?>" minlength="2" maxlength="15" readonly>
                 <label>Fecha Nacimiento</label>
                 <input type="text" name="fechaNac" value="<?=$this->session->userdata('fechaNac')?>" id="datepicker" readonly>
                 <label>Email</label>
