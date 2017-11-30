@@ -51,8 +51,9 @@ $(document).ready( function leer_registos(){
 		});
     });
     $('#btnMostrarTodo').on('click', function () {
-		$.post(window.location.origin+"/nutriversion/index.php/Cliente/desasignar_fecha_detalle");
-		$('#fecha_detalle').val("");
-		table.ajax.reload();
+		$.post(window.location.origin+"/nutriversion/index.php/Cliente/desasignar_fecha_detalle").done(function( data ) { 
+			$('#fecha_detalle').val("");
+			table.ajax.reload();
+		});
     });
 });
