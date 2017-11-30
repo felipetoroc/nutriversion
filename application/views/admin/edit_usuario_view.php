@@ -61,33 +61,42 @@
                         <INPUT type="radio" name="sexo" value="2" checked="checked" required> Mujer <br>
                         <?php }
                         ?>
-                        <?php if ($datos_usuario->id_cliente != null){ ?>
-                        <input type="hidden" name="tipo_usuario" value="<?=$datos_usuario->cliente_tipo?>">
-                        <?php }else{?>
-                        <label>Permisos de Usuario</label>
-                        <select name="tipo_usuario" required> 
-                            <option value="">Seleccionar Permiso</option>
-                            <?php if($datos_usuario->cliente_tipo == 1){ ?>
-                                <option value="1" selected>Paciente</option>
-                                <option value="2">Profesional</option>
-                                <option value="3">Administrador</option>
-                            <?php } ?>
-                            <?php if($datos_usuario->cliente_tipo == 2){ ?>
-                                <option value="1">Paciente</option>
-                                <option value="2" selected>Profesional</option>
-                                <option value="3">Administrador</option>
-                            <?php } ?>
-                            <?php if($datos_usuario->cliente_tipo == 3){ ?>
-                                <option value="1">Paciente</option>
-                                <option value="2">Profesional</option>
-                                <option value="3" selected>Administrador</option>
-                            <?php } ?>
-                        </select>
-                        <?php } ?>  
-                        <label>Sucursal</label>
-                        <select name="sucursal"> 
-                            <option value="">Seleccionar Sucursal</option>
-                        </select>
+                        <?php if ($datos_usuario->peso == null){ ?>
+                            <?php if ($datos_usuario->id_cliente != null){ ?>
+                            <input type="hidden" name="tipo_usuario" value="<?=$datos_usuario->cliente_tipo?>">
+                            <?php }else{?>
+                            <label>Permisos de Usuario</label>
+                            <select name="tipo_usuario" id="tipo_usuario" required> 
+                                <option value="">Seleccionar Permiso</option>
+                                <?php if($datos_usuario->cliente_tipo == 1){ ?>
+                                    <option value="1" selected>Paciente</option>
+                                    <option value="2">Profesional</option>
+                                    <option value="3">Administrador</option>
+                                <?php } ?>
+                                <?php if($datos_usuario->cliente_tipo == 2){ ?>
+                                    <option value="1">Paciente</option>
+                                    <option value="2" selected>Profesional</option>
+                                    <option value="3">Administrador</option>
+                                <?php } ?>
+                                <?php if($datos_usuario->cliente_tipo == 3){ ?>
+                                    <option value="1">Paciente</option>
+                                    <option value="2">Profesional</option>
+                                    <option value="3" selected>Administrador</option>
+                                <?php } ?>
+                            </select>
+                            <?php } ?>  
+                            <div id="divsucursal">
+                                <label>Sucursal</label>
+                                <select name="sucursal"> 
+                                    <option value="">Seleccionar Sucursal</option>
+                                    <?php foreach ($sucursales as $row){ ?>
+                                        <option value="<?=$row->idSucursal;?>"><?=$row->NombreSucursal;?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        <?php }else{ ?>
+                            <input type="hidden" name="tipo_usuario" value="<?=$datos_usuario->cliente_tipo?>">
+                        <?php } ?>
                 </div>
             </div>
             <div class="row">
@@ -142,5 +151,17 @@
                 $('#id_comuna').append("<option value='" + value.COMUNA_ID + "'>" + value.COMUNA_NOMBRE + "</option>");
             });
         }, 'json');
+    });
+    if ($('#tipo_usuario').val() == 1){
+         $('#divsucursal').hide();
+    }
+    $('#tipo_usuario').on('change',function(){
+        
+        if ($(this).val() == 3 | $(this).val() == 2){
+            $('#divsucursal').show();
+        }
+        if ($(this).val() == 1){
+            $('#divsucursal').hide();
+        }
     });
 </script>

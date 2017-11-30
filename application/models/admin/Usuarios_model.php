@@ -172,6 +172,9 @@ class Usuarios_model extends CI_Model {
 			left join comuna on cliente_comuna_id = comuna_id
 			inner join tipo_cliente on cliente.cliente_tipo = tipo_cliente.id_tipo_cliente
 			left join cliente_dieta on cliente_dieta.id_cliente = cliente.cliente_id
+			left join cliente_sucursal on cliente_sucursal.rut_cliente = cliente.cliente_rut
+			left join sucursal on sucursal.idSucursal = cliente_sucursal.id_sucursal
+			left join estado_fisico on estado_fisico.id_cliente = cliente.cliente_id
 			where cliente_id = $id
 			limit 1");
     	return $query->row();
