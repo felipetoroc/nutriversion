@@ -11,7 +11,7 @@ class UsuarioIniciadoPaciente
 	public function __construct()
 	{
 		$this->ci =& get_instance();
-		$this->metodo_ok = ['cerrar'];
+		$this->metodo_ok = ['cerrar','renovar_contra'];
 		$this->metodo_no = ['iniciar'];
 		$this->ci->load->helper('url');
 		
@@ -23,17 +23,23 @@ class UsuarioIniciadoPaciente
 		$method = $this->ci->router->method;
 		$session = $this->ci->session->userdata('id');
 		$tipo_usuario = $this->ci->session->userdata('tipo_usuario');
-		if ($tipo_usuario == '1'){
-			$this->controlador_no = ['welcome','login','clientepro','admin','registro'];
-			$this->urlcorrecta = 'cliente';
-		}
-		if ($tipo_usuario == '2') {
-			$this->controlador_no = ['welcome','login','cliente','admin','registro'];
-			$this->urlcorrecta = 'clientepro';
-		}
-		if ($tipo_usuario == '3') {
-			$this->controlador_no = ['welcome','login','cliente','registro'];
-			$this->urlcorrecta = 'clientepro';
+		$changepass = $this->ci->session->userdata('changepass');
+		if($changepass == 'si'){
+			$this->controlador_no = ['welcome','login','clientepro','admin','registro','cliente'];
+			$this->urlcorrecta = 'login/renovar_contra';
+		}else{
+			if ($tipo_usuario == '1'){
+				$this->controlador_no = ['welcome','login','clientepro','admin','registro'];
+				$this->urlcorrecta = 'cliente';
+			}
+			if ($tipo_usuario == '2') {
+				$this->controlador_no = ['welcome','login','cliente','admin','registro'];
+				$this->urlcorrecta = 'clientepro';
+			}
+			if ($tipo_usuario == '3') {
+				$this->controlador_no = ['welcome','login','cliente','registro'];
+				$this->urlcorrecta = 'clientepro';
+			}
 		}
 		if($session && in_array($class,$this->controlador_no))
 		{

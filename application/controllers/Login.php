@@ -89,7 +89,7 @@ class Login extends CI_Controller {
 		}
 	}
 
-	public function ingresarpass(){
+	public function renovar_contra(){
 		$this->load->view('login/head_view');
 		$this->load->view('login/ingresar_pass_view');
 		$this->load->view('login/foot_view');
@@ -100,16 +100,17 @@ class Login extends CI_Controller {
 		$pass2 = $this->input->post('pass2');
 		if ($pass1 == $pass2){
 			$this->load->model('login/login_model');
-			$resultado = $this->login_model->actualiza_pass($this->session->userdata('mail'),$pass1);
+			$resultado = $this->login_model->actualiza_pass($this->session->userdata('id'),$pass1);
 			if ($resultado == 1){
-				redirect("login/index");
+				$this->session->set_flashdata('error','Inicie sesión con su contraseña nueva');
+				redirect("login/cerrar");
 			}else{
 				$this->session->set_flashdata('error', 'Error de SQL');
-				redirect("login/ingresarpass");
+				$this->renovar_contra();
 			}
 		}else{
-			$this->session->set_flashdata('error', 'Las constraseñas no coinciden');
-			redirect("login/ingresarpass");
+			$this->session->set_flashdata('error', 'Las contraseñas no coinciden');
+			$this->renovar_contra();
 		}		
 	}
 }

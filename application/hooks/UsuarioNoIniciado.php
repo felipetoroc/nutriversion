@@ -11,7 +11,7 @@ class UsuarioNoIniciado
 		$this->ci =& get_instance();
 		$this->controlador_ok = ['welcome','login','registro','loginadmin'];
 		$this->metodo_ok = ['iniciar','registrar','enviarMail'];
-		$this->metodo_no = ['cerrar'];
+		$this->metodo_no = ['cerrar','renovar_contra'];
 		$this->ci->load->helper('url');
 		
 	}	

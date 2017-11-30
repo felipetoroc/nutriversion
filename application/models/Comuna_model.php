@@ -20,5 +20,9 @@ class Comuna_model extends CI_Model {
 		$query = $this->db->query("select * from comuna where comuna_provincia_id = ".$this->input->post('provincia_id'));
 		return $query->result();
 	}	
+	function obtener_sucursales(){
+		$query = $this->db->query("select * from sucursal");
+		return $query->result();
+	}
 }
 ?>

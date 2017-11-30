@@ -141,6 +141,9 @@ class Usuarios_model extends CI_Model {
                     'cliente_imagen_url' => 'img/usuario.jpg'
                 );
                 $this->db->insert('cliente', $data);    
+                if($tipo == 2 | $tipo == 3){
+	                $this->db->query("insert into cliente_sucursal values ($sucursal,$rutsinpuntos,now())");
+	            }
                 return 0;
             }
         }

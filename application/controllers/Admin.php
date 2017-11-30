@@ -33,7 +33,8 @@ class Admin extends CI_Controller {
 		$this->load->model('comuna_model');
 		$data = array(
 			'datos_usuario' => $this->usuarios_model->getUsersById($id_cliente),
-			'regiones' => $this->comuna_model->obtener_region()
+			'regiones' => $this->comuna_model->obtener_region(),
+			'sucursales' => $this->comuna_model->obtener_sucursales()
 		);
 		$this->load->view('admin/head_view');
 		$this->load->view('admin/baner_view');
@@ -95,11 +96,11 @@ class Admin extends CI_Controller {
 		}else{
 			if($resultado == 1){
 			    $this->session->set_flashdata('error','El Rut ingresado no es válido');
-			    $this->nuevoUsuario();
+			    $this->newEditUsuario();
 			}else{
 				if($resultado == 2){
 					$this->session->set_flashdata('error','El Rut o el mail ingresado ya existe');
-			    	$this->nuevoUsuario();
+			    	$this->newEditUsuario();
 				}
 			}
         }

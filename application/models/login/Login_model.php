@@ -40,7 +40,11 @@ class Login_model extends CI_Model
 
             if ($passBD === sha1($pass)) {
                 $usuario = $this->recuperar_id($rut);
-                $this->db->query("select fn_update_sesion('".$_SERVER['REMOTE_ADDR']."','local',".$usuario->cliente_id.",'inicio') from dual;");
+                $queryNumInicios = $this->db->query("select fn_update_sesion('".$_SERVER['REMOTE_ADDR']."','local',".$usuario->cliente_id.",'inicio') as numInicios from dual;");
+                $resQueryNumInicios = $queryNumInicios->row();
+                if ($resQueryNumInicios->numInicios > 2 && $passBD == sha1('inicio2017')){
+                    $this->session->set_userdata('changepass','si');
+                }
                 return $usuario;
             }else{
                 return 1;
@@ -95,12 +99,12 @@ class Login_model extends CI_Model
 
     }
 
-    function actualiza_pass($mail, $pass)
+    function actualiza_pass($id_cliente, $pass)
     {
 
-        $pass_encriptada = $this->encrypt->encode($pass);
+        $pass_encriptada = sha1($pass);
 
-        $query = $this->db->query("select actualiza_pass('" . $mail . "','" . $pass_encriptada .
+        $query = $this->db->query("select actualiza_pass(" . $id_cliente . ",'" . $pass_encriptada .
             "') as resultado from dual");
 
         $row = $query->row();

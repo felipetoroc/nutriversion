@@ -48,16 +48,21 @@
                         <INPUT type="radio" name="sexo" value="1" required> Hombre <br>
                         <INPUT type="radio" name="sexo" value="2" required> Mujer <br>
                         <label>Permisos de Usuario</label>
-                        <select name="tipo_usuario" required> 
+                        <select name="tipo_usuario" id="tipo_usuario" required> 
                             <option value="">Seleccionar Permiso</option>
                             <option value="1">Paciente</option>
                             <option value="2">Profesional</option>
                             <option value="3">Administrador</option>
                         </select>
-                        <label>Sucursal</label>
-                        <select name="sucursal"> 
-                            <option value="">Seleccionar Sucursal</option>
-                        </select>
+                        <div id="divsucursal" >
+                            <label>Sucursal</label>
+                            <select name="sucursal"> 
+                                <option value="">Seleccionar Sucursal</option>
+                                <?php foreach ($sucursales as $row){ ?>
+                                    <option value="<?=$row->idSucursal;?>"><?=$row->NombreSucursal;?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                 </div>
             </div>
             <div class="row">
@@ -68,6 +73,7 @@
     </div>
 </div>
 <script>
+    $('#divsucursal').hide();
     $("#formCampos").validate({
          rules: {
               nombre: {
@@ -112,5 +118,14 @@
                 $('#id_comuna').append("<option value='" + value.COMUNA_ID + "'>" + value.COMUNA_NOMBRE + "</option>");
             });
         }, 'json');
+    });
+    $('#tipo_usuario').on('change',function(){
+        
+        if ($(this).val() == 3 | $(this).val() == 2){
+            $('#divsucursal').show();
+        }
+        if ($(this).val() == 1){
+            $('#divsucursal').hide();
+        }
     });
 </script>
