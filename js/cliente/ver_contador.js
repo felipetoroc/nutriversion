@@ -1,5 +1,8 @@
 $(document).ready( function leer_registos(){			   
-	var table = $('#example').DataTable({"ajax": window.location.origin+"/nutriversion/index.php/Cliente/ver_contador_data",					
+	var table = $('#example').DataTable({"ajax": window.location.origin+"/nutriversion/index.php/Cliente/ver_contador_data",
+		"language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+			},					
 		 "columns": [
 		    { "data": "id_detalle","visible": false},
 		    { "data": "cliente","visible":false},

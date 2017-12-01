@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
     var tabla = $('#tabla').DataTable({
-        dom: 'frt',
+        dom: 'frtp',
         sAjaxSource: window.location.origin+"/nutriversion/index.php/clientepro/getClientes",
+        language: {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            },
+        pagingType: "simple",
         responsive : true,
         columns: [
             { data: "cliente_id" , visible : false},

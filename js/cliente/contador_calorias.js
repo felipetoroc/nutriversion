@@ -1,6 +1,9 @@
 //mostrar registros
 $(document).ready( function leer_registos(){			   
 	var table = $('#example').DataTable({"ajax": window.location.origin+"/nutriversion/index.php/Cliente/contador_data",					
+		 "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+			},
 		 "columns": [
 		    { "data": "ID_ALIMENTO"},
 		    { "data": "categoria_descr"},

@@ -2,6 +2,9 @@
 $(document).ready(function() {
 	var table = $('#table_id').DataTable({
 		"sAjaxSource": window.location.origin+"/nutriversion/index.php/admin/usuarios_data",
+		"language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+			},
 		"columns": [{
 			"data": "cliente_id",
 			visible: false

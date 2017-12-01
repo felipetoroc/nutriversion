@@ -4,6 +4,9 @@ $(document).ready(function(){
 
 	var table_dietas = $('#table_dietas').DataTable({
 		sAjaxSource: window.location.origin+"/nutriversion/index.php/clientepro/dietas_data",
+		language: {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+			},
         responsive : true,
 		columns: [
 			{
