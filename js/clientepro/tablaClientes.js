@@ -84,4 +84,20 @@ $(document).ready(function() {
             $('#myModal').foundation('reveal', 'open');
         }
     });
+    $("#btnVerCumplimiento").on('click',function(){
+        var cliente_seleccionado = tabla.cell('.selected',1).data();
+        var id_cliente = $("#id_cliente").val();
+        var nombre_cliente = $("#nombre_cliente").val();
+        var apellido_cliente = $("#apellido_cliente").val();
+        var btn = "cumplimiento";
+        if(cliente_seleccionado != null){
+            $.post( window.location.origin+"/nutriversion/index.php/clientepro/setFlashDataIdCliente", {id_cliente:id_cliente,nombre_cliente:nombre_cliente,apellido_cliente:apellido_cliente,btn:btn})
+                .done(function(data){
+                    $( location ).attr("href", data);
+                });  
+        }else{
+            $("#textModal").html("Debe seleccionar un paciente.")
+            $('#myModal').foundation('reveal', 'open');
+        }
+    });
 });

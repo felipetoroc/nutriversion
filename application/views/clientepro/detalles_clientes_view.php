@@ -1,16 +1,20 @@
 <script type="text/javascript" src="<?php echo base_url() ?>js/clientepro/tablaClientes.js"></script>
 <div class="large-12 medium-12 small-12 columns">
     <div class="large-3 medium-4 small-12 columns">
-        <table id="tabla" class="table">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Rut</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-            </tr>
-            </thead>
-        </table>
+        <div class="row">
+            <div class="large-12 medium-12 small-12 columns">
+                <table id="tabla" class="table">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Rut</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     </div>
     <div class="large-9 medium-8 small-12 columns">
         <div class="row">
@@ -45,6 +49,7 @@
                         <td>Consumo Calorico Diario</td><td><label id="cons_cal_diario"></label></td>
                     </tr>
                 </table>
+                <button id="btnVerCumplimiento" class="button tiny warning">Ver Cumplimiento</button>
             </div>
             <div id="div_detalles_cliente" class="large-5 medium-12 small-12 columns">
                 <h3>Dieta Asignada</h3>
