@@ -27,10 +27,73 @@
             <div class="row">
                 <div class="large-12 medium-6 medium-centered small-9 small-centered columns">
                     <p class="text-center">
+                        <?php $cumplimiento = $cumplimiento * 100;?>
                         <?php
-                            $cumplimiento = $cumplimiento * 100;
+                            if ($cumplimiento == 0){
+                                $imagen = 0;
+                            }
+                            else if($cumplimiento > 0 && $cumplimiento <= 5){
+                                $imagen = 5;
+                            }
+                            else if($cumplimiento > 5 && $cumplimiento <= 10){
+                                $imagen = 10;
+                            }
+                            else if($cumplimiento > 10 && $cumplimiento <= 15){
+                                $imagen = 15;
+                            }
+                            else if($cumplimiento > 15 && $cumplimiento <= 20){
+                                $imagen = 20;
+                            }
+                            else if($cumplimiento > 20 && $cumplimiento <= 25){
+                                $imagen = 25;
+                            }
+                            else if($cumplimiento > 25 && $cumplimiento <= 30){
+                                $imagen = 30;
+                            }
+                            else if($cumplimiento > 30 && $cumplimiento <= 35){
+                                $imagen = 35;
+                            }
+                            else if($cumplimiento > 35 && $cumplimiento <= 40){
+                                $imagen = 40;
+                            }
+                            else if($cumplimiento > 40 && $cumplimiento <= 45){
+                                $imagen = 45;
+                            }
+                            else if($cumplimiento > 45 && $cumplimiento <= 50){
+                                $imagen = 50;
+                            }
+                            else if($cumplimiento > 50 && $cumplimiento <= 55){
+                                $imagen = 55;
+                            }
+                            else if($cumplimiento > 55 && $cumplimiento <= 60){
+                                $imagen = 60;
+                            }
+                            else if($cumplimiento > 60 && $cumplimiento <= 65){
+                                $imagen = 65;
+                            }
+                            else if($cumplimiento > 65 && $cumplimiento <= 70){
+                                $imagen = 70;
+                            }
+                            else if($cumplimiento > 70 && $cumplimiento <= 75){
+                                $imagen = 75;
+                            }
+                            else if($cumplimiento > 75 && $cumplimiento <= 80){
+                                $imagen = 80;
+                            }
+                            else if($cumplimiento > 80 && $cumplimiento <= 85){
+                                $imagen = 85;
+                            }
+                            else if($cumplimiento > 85 && $cumplimiento <= 90){
+                                $imagen = 90;
+                            }
+                            else if($cumplimiento > 90 && $cumplimiento <= 95){
+                                $imagen = 95;
+                            }
+                            else if($cumplimiento > 95 && $cumplimiento <= 100){
+                                $imagen = 100;
+                            }
                         ?>
-                    <img src='<?=base_url()?>img/cump/<?=$cumplimiento?>.png' width='100%' height='100%'>
+                    <img src='<?=base_url()?>img/cump/<?=$imagen?>.png' width='100%' height='100%'>
                     </p>
                 </div>
             </div>
