@@ -37,11 +37,11 @@ class Registro extends CI_Controller {
 			redirect('registro/usuario_creado');
 		}else{
 			if($resultado == 1){
-			    $this->session->set_flashdata('error','El Rut ingresado no es válido');
+			    $this->session->set_flashdata('errorReg','El Rut ingresado no es válido');
 			    $this->index();
 			}else{
 				if($resultado == 2){
-					$this->session->set_flashdata('error','El Rut o el mail ingresado ya existe');
+					$this->session->set_flashdata('errorReg','El Rut o el mail ingresado ya existe');
 			    	$this->index();
 				}
 			}

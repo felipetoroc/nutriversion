@@ -92,7 +92,17 @@ class Admin extends CI_Controller {
         $resultado = $this->usuarios_model->newUser($nombre,$apellidop,$apellidom,$rut,$fechaNac,$email,$telefono,$id_comuna,$direccion,$sexo,$tipo,$sucursal);
 		if($resultado == 0)
 		{
-			redirect('admin/usuarios');
+			$data = array(
+				'clase' => $this->router->class,
+				'metodo' => 'usuarios',
+				'mensaje' => "Usuario creado con éxito."
+			);
+			$this->load->view('admin/head_view');
+			$this->load->view('admin/baner_view');
+			$this->load->view('admin/topbar_view');
+			$this->load->view('mensajes/mensaje_view',$data);
+			$this->load->view('admin/foot_view');
+			
 		}else{
 			if($resultado == 1){
 			    $this->session->set_flashdata('error','El Rut ingresado no es válido');
@@ -108,9 +118,9 @@ class Admin extends CI_Controller {
     public function editar(){
 		$fechainput = DateTime::createFromFormat('d/m/Y', $this->input->post('fechaNac'))->format('Y/m/d');
 		$id_cliente = $this->input->post('cliente_id');
-		$nombre = strtoupper($this->input->post('nombre'));
-        $apellidop = strtoupper($this->input->post('apellidop'));
-        $apellidom = strtoupper($this->input->post('apellidom'));
+		$nombre = strtr(strtoupper($this->input->post('nombre')),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+        $apellidop = strtr(strtoupper($this->input->post('apellidop')),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+        $apellidom = strtr(strtoupper($this->input->post('apellidom')),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
         $rut = $this->input->post('rut');
 		$fechaNac = $fechainput;
 		$email = $this->input->post('mail');

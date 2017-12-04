@@ -17,7 +17,7 @@
                 <label>Apellido Materno</label>
                 <input type="text" name="apellidom" value="<?php echo (isset($apellidos[1]))?$apellidos[1]:"" ?>" minlength="2" maxlength="15" readonly>
                 <label>Fecha Nacimiento</label>
-                <input type="text" name="fechaNac" value="<?=$this->session->userdata('fechaNac')?>" id="datepicker" readonly>
+                <input type="text" name="fechaNac" value="<?=$this->session->userdata('fechaNac')?>" readonly>
                 <label>Email</label>
                 <input type="email" name="mail" value="<?=$this->session->userdata('email')?>" required>
                 <label>Telefono Contacto</label>
@@ -31,7 +31,9 @@
                     <?php } ?>
                     </select>
                     <span class="input-group-addon"></span>
+                    <LABEL>Provincia</LABEL>
                     <select name="provincia" id="provincia"></select>
+                    <LABEL>Comuna</LABEL>
                     <select name="id_comuna" id="id_comuna"></select>
                 </div>
                 </select>
